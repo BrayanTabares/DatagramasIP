@@ -16,8 +16,8 @@ function transform(valor = 0,unidad = 2,tamano = 0){
     
 }
 
-//let protocolList=[protocolObject("ICMP",1),protocolObject("TCP",6),protocolObject("UDP",17)];
-let protocolList=[{nombre:"ICMP",numDecimal:1},{nombre:"TCP",numDecimal:6},{nombre:"UDP",numDecimal:17}];
+let protocolList=[new protocolObject("ICMP",1),new protocolObject("TCP",6),new protocolObject("UDP",17)];
+//let protocolList=[{nombre:"ICMP",numDecimal:1},{nombre:"TCP",numDecimal:6},{nombre:"UDP",numDecimal:17}];
 console.log(protocolList);
 
 //Campos entrantes
@@ -93,7 +93,7 @@ function dividirStringEnArray (cadena,numDeCaracteres){
 
 let listFrag = [];
 
-
+document.write("<p><marquee><h1>HOOOOOOOOOOOOOLI</h1><marquee></p><p>MADAFAKA</p>")
 
 /*
 document.write(identy+"\n");
