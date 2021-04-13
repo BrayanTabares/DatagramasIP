@@ -48,65 +48,35 @@ function fragmento (len,df,mf,despl,sum){
     this.mf=mf;
     this.despl=despl;
     this.sum=sum;
-    this.generateBin = function(){
-        let cadena=transform(version,2,4);
-        cadena+=transform(longEncabezado,2,4);
-        cadena+=transform(servDif,2,8);
-        cadena+=transform(this.len,2,16);
-        cadena+=transform(identy,2,16);
-        cadena+="0"+this.df+this.mf;
-        cadena+=transform(despl,2,13);
-        cadena+=transform(timeLife,2,8);
-        cadena+=transform(protocol.numDecimal,2,8);
-        cadena+=transform(this.sum,2,16);
-        let ipO=dirO.split(".");
-        cadena+=ipO.forEach((e)=>{ return transform(e,2,8)});
-        let ipD=dirD.split(".");
-        cadena+=ipD.forEach((e)=>{ return transform(e,2,8)});
-        return cadena;
-    }
-    this.generateHexa = function(){
-        return this.generateBin.toString(16);
-    }
-    this.prueba = function(){
-        return "Hola";
-    }
 }
 
+function generateBinString (fragmento) {
+    let cadena=transform(version,2,4);
+    cadena+=transform(longEncabezado,2,4);
+    cadena+=transform(servDif,2,8);
+    cadena+=transform(fragmento.len,2,16);
+    cadena+=transform(identy,2,16);
+    cadena+="0"+fragmento.df+fragmento.mf;
+    cadena+=transform(fragmento.despl,2,13);
+    cadena+=transform(timeLife,2,8);
+    cadena+=transform(protocol.numDecimal,2,8);
+    cadena+=transform(fragmento.sum,2,16);
+    let ipO=dirO.split(".");
+    ipO.forEach((e)=>{ cadena+=transform(Number(e),2,8)});
+    let ipD=dirD.split(".");
+    ipD.forEach((e)=>{ cadena+=transform(Number(e),2,8)});
+    return cadena;
+}
 
-let fragmento1 = { 
-    len:lenTotal,
-    df:0,
-    mf:0,
-    despl:0,
-    sum:0,
-    generateBinString : function(){
-        let cadena=transform(version,2,4);
-        cadena+=transform(longEncabezado,2,4);
-        cadena+=transform(servDif,2,8);
-        cadena+=transform(this.len,2,16);
-        cadena+=transform(identy,2,16);
-        cadena+="0"+this.df+this.mf;
-        cadena+=transform(this.despl,2,13);
-        cadena+=transform(timeLife,2,8);
-        cadena+=transform(protocol.numDecimal,2,8);
-        cadena+=transform(this.sum,2,16);
-        let ipO=dirO.split(".");
-        ipO.forEach((e)=>{ cadena+=transform(Number(e),2,8)});
-        let ipD=dirD.split(".");
-        ipD.forEach((e)=>{ cadena+=transform(Number(e),2,8)});
-        return cadena;
-    },
-    generateHexa : function(){
-        let arrayBinario=dividirStringEnArray(this.generateBinString(),4);
-        let arrayHexa=new Array(arrayBinario.length);
-        arrayBinario.forEach((e,i,a)=>arrayHexa[i]=(parseInt(e,2)).toString(16));
-        return arrayHexa;
-    },
-    generateBin : function(){
-        return dividirStringEnArray(this.generateBinString(),8);
-    }
-    
+function generateHexa (fragmento){
+    let arrayBinario=dividirStringEnArray(generateBinString(fragmento),4);
+    let arrayHexa=new Array(arrayBinario.length);
+    arrayBinario.forEach((e,i,a)=>arrayHexa[i]=(parseInt(e,2)).toString(16));
+    return arrayHexa;
+}
+
+function generateBin (fragmento){
+    return dividirStringEnArray(generateBinString(fragmento),8);
 }
 
 //Divide el string en conjuntos con una cantidad de caracteres especificos, lo devuelve en un array con dichos conjuntos
@@ -119,7 +89,7 @@ function dividirStringEnArray (cadena,numDeCaracteres){
 }
 
 
-//Funcion para la 
+//Funcion para la lista de fragmentos
 
 let listFrag = [];
 
@@ -132,6 +102,5 @@ document.write(Number("192").toString(2));
 document.write("192.168.0.1".split("."));
 document.write("192.168.0.1".split("."));
 */
-console.log(fragmento1.generateBin());
-console.log(fragmento1.generateHexa());
-console.log(new fragmento1(len=lenTotal,df=0,mf=0,despl=0,sum=0).generateHexa());
+console.log(generateBin(new fragmento(lenTotal,0,0,0,0)));
+console.log(generateHexa(new fragmento(lenTotal,0,0,0,0)));
