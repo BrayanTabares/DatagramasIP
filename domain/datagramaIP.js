@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 function protocolObject (nombre,numDecimal){
@@ -7,13 +7,13 @@ function protocolObject (nombre,numDecimal){
     this.numDecimal=numDecimal;
 }
 
-function transform(valor = 0,unidad = 2,tamano = 0){    
+function transform(valor = 0,unidad = 2,tamano = 0){
     let aux = valor.toString(unidad);
     if (tamano!=0){
         aux=aux.padStart(tamano,"0");
     }
     return aux;
-    
+
 }
 
 let protocolList=[new protocolObject("ICMP",1),new protocolObject("TCP",6),new protocolObject("UDP",17)];
@@ -29,7 +29,7 @@ let dirD = "192.168.0.2";
 
 
 //Autogenerados
-const identy = Math.round(Math.random()*65535);
+const identity = Math.round(Math.random()*65535);
 const timeLife = Math.round(Math.random()*255);
 
 //Datos previos
@@ -55,7 +55,7 @@ function generateBinString (fragmento) {
     cadena+=transform(longEncabezado,2,4);
     cadena+=transform(servDif,2,8);
     cadena+=transform(fragmento.len,2,16);
-    cadena+=transform(identy,2,16);
+    cadena+=transform(identity,2,16);
     cadena+="0"+fragmento.df+fragmento.mf;
     cadena+=transform(fragmento.despl,2,13);
     cadena+=transform(timeLife,2,8);
@@ -83,7 +83,7 @@ function generateBin (fragmento){
 function dividirStringEnArray (cadena,numDeCaracteres){
     let newArray=new Array(cadena.length/numDeCaracteres);
     for(let i=1;i<=newArray.length;i++){
-         newArray[i-1]=cadena.substring(((i-1)*numDeCaracteres),(i*numDeCaracteres));        
+         newArray[i-1]=cadena.substring(((i-1)*numDeCaracteres),(i*numDeCaracteres));
     }
     return newArray;
 }
@@ -93,10 +93,10 @@ function dividirStringEnArray (cadena,numDeCaracteres){
 
 let listFrag = [];
 
-document.write("<p><marquee><h1>HOOOOOOOOOOOOOLI</h1><marquee></p><p>MADAFAKA</p>")
+//document.write("<p><marquee><h1>HOOOOOOOOOOOOOLI</h1><marquee></p><p>MADAFAKA</p>")
 
 /*
-document.write(identy+"\n");
+document.write(identity+"\n");
 document.write(transform(192,2,9)+"\n");
 document.write(Number("192").toString(2));
 document.write("192.168.0.1".split("."));
