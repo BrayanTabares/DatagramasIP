@@ -168,4 +168,4 @@ fragmentoPrueba=new fragmento(LEN_TOTAL,0,0,0);
 //console.log(fragmentoPrueba.hexa);
 fragmentar(MTU,LEN_TOTAL,PROTOCOL,DIR_O,DIR_D);
 console.log(FRAG_LIST);
-
+console.log("Su pinche mae")
