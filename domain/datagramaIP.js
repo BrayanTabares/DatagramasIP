@@ -13,12 +13,18 @@ const IDENTY = Math.round(Math.random()*65535);
 const TIME_LIFE = Math.round(Math.random()*255);
 
 //Campos entrantes - Inputs del html
+let MTU = 0;
+let LEN_TOTAL = 0;
+let PROTOCOL = PROTOCOL_LIST[1];
+let DIR_O = "";
+let DIR_D = "";
+/*
 let MTU = 1500;
 let LEN_TOTAL = 3500;
 let PROTOCOL = PROTOCOL_LIST[0];
 let DIR_O = "192.168.0.1";
 let DIR_D = "192.168.0.2";
-
+*/
 //Datos calculados
 
     //lista de fragmentos
@@ -47,7 +53,7 @@ function protocolObject (nombre,numDecimal){
     this.numDecimal=numDecimal;
 }
 
-function transform(valor,unidad = 2,tamano = 0){    
+function transform(valor,unidad = 2,tamano = 0){
     let aux = valor.toString(unidad);
     if (tamano!=0){
         aux=aux.padStart(tamano,"0");
@@ -102,7 +108,7 @@ function calcularSumaComprobacion(fragmento){
             if(suma.length>4){
                 suma=sumarHexa(suma.substring(0,1),suma.substring(1));
             }
-        }        
+        }
     }
     return parseInt(restarHexa("FFFF",suma),16);
 }
@@ -136,7 +142,7 @@ function fragmentar(mtu,lenTotal,protocol,dirO,dirD){
         let len=mtu;
         let mostFragments=0;
         //Es el último fragmento?
-        if(boolFragmentar){            
+        if(boolFragmentar){
             if((i+1)<numFragments){
                 mostFragments=1;
             }else{
@@ -166,6 +172,16 @@ fragmentoPrueba=new fragmento(LEN_TOTAL,0,0,0);
 //console.log(fragmentoPrueba.binString);
 //console.log(fragmentoPrueba.bin);
 //console.log(fragmentoPrueba.hexa);
-fragmentar(MTU,LEN_TOTAL,PROTOCOL,DIR_O,DIR_D);
-console.log(FRAG_LIST);
-console.log("Su pinche mae")
+function calcular(){
+MTU = parseInt( document.getElementById("MTU").value);
+LEN_TOTAL = parseInt(document.getElementById("LEN_TOTAL").value);
+console.log(parseInt(document.getElementById("PROTOCOL").value))
+debugger
+PROTOCOL = PROTOCOL_LIST[ parseInt(document.getElementById("PROTOCOL").value)];
+DIR_O= document.getElementById("DIR_O").value;
+DIR_D= document.getElementById("DIR_D").value;
+
+  fragmentar(MTU,LEN_TOTAL,PROTOCOL,DIR_O,DIR_D);
+  console.log(FRAG_LIST);
+  debugger;
+}

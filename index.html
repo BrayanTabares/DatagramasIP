@@ -33,32 +33,32 @@
     <form class="needs-validation" novalidate>
       <div class="row g-4">
         <div class="col-sm-1">
-          <label for="mtu" class="form-label">MTU</label>
-          <input type="text" class="form-control" id="mtu" placeholder="1500" value="" required>
+          <label for="MTU" class="form-label">MTU</label>
+          <input type="text" class="form-control" id="MTU" placeholder="1500" value="" required>
           <div class="invalid-feedback">
             Ingrese un número.
           </div>
         </div>
 
         <div class="col-sm-1">
-          <label for="longitudT" class="form-label">Longitud</label>
-          <input type="text" class="form-control" id="longitudT" placeholder="" value="" required>
+          <label for="LEN_TOTAL" class="form-label">Longitud</label>
+          <input type="text" class="form-control" id="LEN_TOTAL" placeholder="" value="" required>
           <div class="invalid-feedback">
             Ingreso un número válido.
           </div>
         </div>
 
         <div class="col-sm-3">
-          <label for="ipO" class="form-label">Dirección IP Origen</label>
-          <input type="text" class="form-control" id="ipO" placeholder="" value="" required>
+          <label for="DIR_O" class="form-label">Dirección IP Origen</label>
+          <input type="text" class="form-control" id="DIR_O" placeholder="" value="" required>
           <div class="invalid-feedback">
             Ingrese una dirección IP.
           </div>
         </div>
 
         <div class="col-sm-3">
-          <label for="ipD" class="form-label">Dirección IP Destino</label>
-          <input type="text" class="form-control" id="ipD" placeholder="" value="" required>
+          <label for="DIR_D" class="form-label">Dirección IP Destino</label>
+          <input type="text" class="form-control" id="DIR_D" placeholder="" value="" required>
           <div class="invalid-feedback">
             Ingrese una dirección IP.
           </div>
@@ -68,19 +68,21 @@
           <label for="protocolo" class="form-label">Protocolo de nivel superior</label>
         <h6></h6>
           <div class="form-check form-check-inline">
-            <input id="icmp" name="protocolo" type="radio" class="form-check-input" checked required>
-            <label class="form-check-label" for="credit">ICMP</label>
+            <input id="PROTOCOL" name="protocolo" type="radio" class="form-check-input" checked required>
+            <label class="form-check-label" value="0" for="credit">ICMP</label>
           </div>
           <div class="form-check form-check-inline">
-            <input id="tcp" name="protocolo" type="radio" class="form-check-input" required>
-            <label class="form-check-label" for="tcp">TCP</label>
+            <input id="PROTOCOL" name="protocolo" type="radio" class="form-check-input" required>
+            <label class="form-check-label" value="1" for="tcp">TCP</label>
           </div>
           <div class="form-check form-check-inline">
-            <input id="udp" name="protocolo" type="radio" class="form-check-input" required>
-            <label class="form-check-label" for="udp">UDP</label>
+            <input id="PROTOCOL" name="protocolo" type="radio" class="form-check-input" required>
+            <label class="form-check-label" value="2" for="udp">UDP</label>
           </div>
         </div>
       </div>
+      <hr class="my-4">
+        <button class="w-50 btn btn-primary btn-lg" onclick="calcular()" type="submit">Calcular</button>
     </form>
 
     <div class="row g-5">
@@ -302,5 +304,6 @@
     <script src="js/bootstrap.bundle.min.js"></script>
 
       <script src="js/form-validation.js"></script>
+      <script src="domain/datagramaIP.js"></script>
   </body>
 </html>
