@@ -25,10 +25,31 @@
 
 <div class="container">
   <main>
-    <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="images/brayan.jpg" alt="" width="62" height="67">
+    </div>
+    <div class="py-5 text-center">
       <h2>Datagrama</h2>
     </div>
+    <form class="needs-validation" novalidate>
+      <div class="row g-3">
+        <div class="col-sm-3">
+          <label for="mtu" class="form-label">MTU</label>
+          <input type="text" class="form-control" id="mtu" placeholder="1500" value="" required>
+          <div class="invalid-feedback">
+            Ingrese un número.
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <label for="longitudT" class="form-label">Longitud Total</label>
+          <input type="text" class="form-control" id="longitudT" placeholder="" value="" required>
+          <div class="invalid-feedback">
+            Ingreso un número válido.
+          </div>
+        </div>
+      </div>
+    </form>
+
     <div class="row g-5">
       <div class="col-md-5 col-lg-5 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -85,7 +106,7 @@
               <label for="firstName" class="form-label">First name</label>
               <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
               <div class="invalid-feedback">
-                Please kill yourself.
+                Josecito furry.
               </div>
             </div>
 
