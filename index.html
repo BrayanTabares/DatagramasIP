@@ -1,85 +1,252 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+    <title>Checkout example · Bootstrap v5.0</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/navbar-top-fixed.css">
 
-    <title>Hello, world!</title>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Fixed navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
+
+    <!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/form-validation.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="bg-light">
 
-    <main class="container">
-      <div class="bg-light p-5 rounded">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
-        <a class="btn btn-lg btn-primary" href="" >}}" role="button">View navbar docs &raquo;</a>
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="images/brayan.jpg" alt="" width="62" height="67">
+      <h2>Datagrama</h2>
+    </div>
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-5 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Your cart</span>
+          <span class="badge bg-primary rounded-pill">3</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Product name</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Second product</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$8</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Third item</h6>
+              <small class="text-muted">Brief description</small>
+            </div>
+            <span class="text-muted">$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+              <h6 class="my-0">Promo code</h6>
+              <small>EXAMPLECODE</small>
+            </div>
+            <span class="text-success">−$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong>$20</strong>
+          </li>
+        </ul>
+
+        <form class="card p-2">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Promo code">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </form>
       </div>
-    </main>
+      <div class="col-md-7 col-lg-6">
+        <h4 class="mb-3">Billing address</h4>
+        <form class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">First name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Please kill yourself.
+              </div>
+            </div>
 
-    <h1>Hello, world!</h1>
-    <div class="container text-center py-5">
-      <h1 class="display-1">Hola Mundo aqui estoy</h1> 
-    </div> 
-    
-    <!-- Center Container-->
-    <div class="container">
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam doloremque dignissimos, eligendi atque impedit quia vero nemo rem minus ducimus dolores, temporibus tenetur numquam esse quisquam similique inventore! Accusamus suscipit cum deserunt quo consequatur vitae totam, doloremque repellat et quia hic, blanditiis velit illo pariatur. Praesentium deserunt labore ipsum maiores qui. Consequuntur, libero numquam ducimus, nobis perspiciatis eaque adipisci facere dicta quidem porro qui quisquam consectetur, dignissimos in consequatur autem reprehenderit obcaecati magnam saepe provident molestiae! Nesciunt enim inventore quas? Iusto dolorum ducimus reprehenderit ut accusantium. Nostrum in aspernatur pariatur quia iste illo, est animi, voluptate totam possimus quibusdam quos minus fugiat assumenda! Mollitia, deleniti. Laboriosam distinctio sequi aperiam nulla, suscipit inventore quas impedit necessitatibus similique iusto cum veritatis quis in deleniti labore. Excepturi ipsam et adipisci explicabo deleniti deserunt doloribus fuga ratione unde asperiores quo aperiam earum eligendi eveniet quam modi exercitationem corrupti quibusdam omnis, consequuntur temporibus tenetur placeat.</p>
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="username" class="form-label">Username</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="username" placeholder="Username" required>
+              <div class="invalid-feedback">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="col-md-5">
+              <label for="country" class="form-label">Country</label>
+              <select class="form-select" id="country" required>
+                <option value="">Choose...</option>
+                <option>United States</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required>
+                <option value="">Choose...</option>
+                <option>California</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="zip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="same-address">
+            <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="save-info">
+            <label class="form-check-label" for="save-info">Save this information for next time</label>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Payment</h4>
+
+          <div class="my-3">
+            <div class="form-check">
+              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+              <label class="form-check-label" for="credit">Credit card</label>
+            </div>
+            <div class="form-check">
+              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">Debit card</label>
+            </div>
+            <div class="form-check">
+              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="paypal">PayPal</label>
+            </div>
+          </div>
+
+          <div class="row gy-3">
+            <div class="col-md-6">
+              <label for="cc-name" class="form-label">Name on card</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required>
+              <small class="text-muted">Full name as displayed on card</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="cc-number" class="form-label">Credit card number</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required>
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-expiration" class="form-label">Expiration</label>
+              <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="cc-cvv" class="form-label">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+        </form>
+      </div>
     </div>
+  </main>
 
-    <!-- Container Fluid-->
-    <div class="container-fluid">
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam doloremque dignissimos, eligendi atque impedit quia vero nemo rem minus ducimus dolores, temporibus tenetur numquam esse quisquam similique inventore! Accusamus suscipit cum deserunt quo consequatur vitae totam, doloremque repellat et quia hic, blanditiis velit illo pariatur. Praesentium deserunt labore ipsum maiores qui. Consequuntur, libero numquam ducimus, nobis perspiciatis eaque adipisci facere dicta quidem porro qui quisquam consectetur, dignissimos in consequatur autem reprehenderit obcaecati magnam saepe provident molestiae! Nesciunt enim inventore quas? Iusto dolorum ducimus reprehenderit ut accusantium. Nostrum in aspernatur pariatur quia iste illo, est animi, voluptate totam possimus quibusdam quos minus fugiat assumenda! Mollitia, deleniti. Laboriosam distinctio sequi aperiam nulla, suscipit inventore quas impedit necessitatibus similique iusto cum veritatis quis in deleniti labore. Excepturi ipsam et adipisci explicabo deleniti deserunt doloribus fuga ratione unde asperiores quo aperiam earum eligendi eveniet quam modi exercitationem corrupti quibusdam omnis, consequuntur temporibus tenetur placeat.</p>
-    </div>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017–2021 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
 
-    <!-- Container Fluid-->
-    <div class="container-fluid">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis tempore velit laboriosam error libero, sed fugit placeat facilis consectetur aspernatur ut tempora maiores deleniti deserunt quia pariatur modi est illum autem adipisci incidunt. Velit reprehenderit ab recusandae dignissimos suscipit incidunt nobis eos quasi inventore eum porro enim beatae, temporibus necessitatibus esse error, distinctio totam harum quo modi aliquam expedita! Eveniet numquam pariatur, praesentium, veritatis impedit unde nobis porro corrupti recusandae iste officia. Tempore soluta necessitatibus odit eum inventore accusamus nesciunt? Culpa voluptatem doloribus earum perferendis ducimus ipsam necessitatibus debitis distinctio, illum dolorum ad architecto exercitationem aspernatur doloremque velit saepe aut! Enim magnam accusamus itaque laudantium nemo. Quod laborum ad aliquid ab unde eligendi nam reprehenderit, aut rerum incidunt excepturi ipsam cupiditate doloremque modi amet labore dolores consectetur architecto eius, facere impedit magnam quia ratione? Autem libero sed dignissimos consequuntur cupiditate quos ipsum voluptas rem cum, accusantium modi esse, temporibus praesentium. Dolore et assumenda enim accusantium quae, sequi ipsa cupiditate voluptatem aliquam expedita natus voluptates, fugit iure qui reprehenderit, minima recusandae labore adipisci nesciunt explicabo tenetur! Reprehenderit facilis, neque iusto fugiat cum itaque similique voluptas tempore sequi nemo sit recusandae, assumenda voluptatum nulla eos minus numquam iure provident quidem dolorem, delectus molestias optio! Similique debitis, odio soluta aspernatur illum praesentium, possimus tempora asperiores inventore eum voluptate optio alias natus minima ducimus repudiandae voluptatem modi maiores dignissimos ex! Consectetur provident ullam dolore aperiam quod. Sunt, officiis explicabo nisi soluta voluptate necessitatibus. Nemo hic, doloremque repellendus accusamus illum, consequuntur minus eum veritatis aut ducimus nisi iusto? Deserunt cum suscipit culpa officiis commodi porro corrupti ad? Optio doloremque ipsum necessitatibus illum velit ipsa dolore obcaecati, omnis vitae blanditiis ullam laboriosam inventore provident. Accusamus totam aut, fugit, id animi suscipit mollitia harum iure quo architecto fugiat maxime sequi. Repudiandae, ex quam molestias praesentium vel expedita consectetur iste corrupti soluta facilis nostrum magni voluptatibus minus sit odio libero dolorum, nesciunt accusantium iusto! Qui eius ad error, nostrum deserunt est laudantium corrupti voluptatum, ab ullam, delectus similique laborum numquam dolor! Ex a maiores repudiandae expedita sequi corporis. Laudantium omnis labore aperiam adipisci. Repellendus cupiditate quo, assumenda recusandae at suscipit alias odit pariatur voluptatum aperiam facere ullam architecto laboriosam optio incidunt aliquid odio culpa placeat, dolores id dolore soluta sapiente. Eveniet, voluptatibus doloribus, dolorum dolorem laudantium alias iste quod harum excepturi nesciunt vero magni? Minus sapiente nesciunt corrupti eligendi neque enim doloremque natus ducimus mollitia maiores? Obcaecati rerum odio tempora dicta nobis eligendi a! Mollitia at eligendi natus id ullam doloribus consequatur eum tenetur odit obcaecati labore esse quam recusandae nam rerum in, asperiores accusantium atque temporibus! Aspernatur similique, quis consequatur ab totam adipisci fugit voluptatibus omnis illum voluptate quod praesentium hic aliquam quas optio veritatis. Reprehenderit perspiciatis ab unde assumenda magnam? Soluta temporibus, quod eos commodi fuga vitae animi autem exercitationem. Numquam minima voluptatem facilis ipsum rerum modi atque unde et? Non placeat maiores neque vero. Reiciendis, magni aliquid praesentium fugiat officia quisquam similique aspernatur sed illum, sint, corporis accusamus expedita consequuntur aliquam ratione inventore consectetur quis? Doloremque voluptatum at accusantium modi iste autem fugiat dolorem, expedita laudantium, provident perferendis accusamus sapiente mollitia sequi dolore ipsa neque numquam eos, blanditiis dolorum facere atque velit nam! Dolorum, quasi distinctio mollitia aliquam iste magnam, accusamus soluta id reprehenderit at quia autem! Id porro eligendi magni illum excepturi nihil voluptatum quae odit maxime adipisci itaque perspiciatis repellendus quos, non ipsa quibusdam? Omnis nihil veniam expedita cumque exercitationem impedit quidem, voluptates culpa suscipit, facere officiis molestiae. Quibusdam, neque similique libero consequatur assumenda culpa sit delectus et impedit sunt minima tempora amet dolorem! Et, ducimus cupiditate cumque placeat unde neque non, voluptatum aspernatur culpa minima facere atque dolorem quisquam consequuntur molestias! At enim a ullam explicabo corrupti itaque sequi quasi cupiditate, fuga neque eius rem repellendus ea, debitis eveniet reiciendis? Quo odit maxime praesentium architecto aliquid fugit itaque! Maiores, nihil? Architecto, fuga, totam delectus eveniet saepe officia expedita nobis officiis qui ab cum inventore laboriosam vero, fugiat maiores porro est deserunt similique? At repellendus recusandae enim velit facilis deleniti sunt eos voluptate quas! Quis distinctio debitis, quasi porro blanditiis sunt, repellat eius consequatur numquam cupiditate aut ratione quos perferendis vel adipisci suscipit dicta, nam vero. Obcaecati esse iste asperiores optio commodi, ea expedita illo explicabo. Ex nihil architecto id? Nulla nostrum iste soluta? In, rem doloribus voluptas dolor beatae earum vel neque aut nemo fugiat est fugit excepturi reprehenderit dolore voluptatum nostrum perferendis delectus sint quo architecto inventore iusto vitae voluptatibus voluptates. Ipsum veritatis ipsa facilis cum laborum iusto fugiat id consectetur. Quia perferendis, adipisci incidunt quibusdam quis voluptas est. Sequi, numquam qui cupiditate doloribus repellat soluta id aliquid quas sed recusandae unde optio iure debitis nisi est maxime atque esse quibusdam? Rem laboriosam iure, voluptate voluptatum in voluptas omnis odit recusandae fuga sit possimus enim alias repellat dolor! Porro eveniet velit corporis laudantium ex nam vitae quidem temporibus aliquid, minima a quaerat voluptatem ratione reiciendis quod inventore eum nesciunt iusto consequatur qui est officia dolorum? Quam tempore dolores exercitationem illum deserunt. Blanditiis rem temporibus, accusantium consequuntur doloremque eum itaque animi tempore ducimus fuga quod, molestiae quibusdam illum et deserunt delectus modi ipsum sint nulla perferendis consequatur vero culpa? Explicabo quae voluptatibus similique non? A eos magni necessitatibus fugit, hic quidem. Provident eligendi beatae voluptas perferendis voluptates officia tempora, perspiciatis nemo unde, molestias voluptatum illo iusto. Esse blanditiis id labore iure doloribus laborum sed, eaque aperiam, quam sapiente maxime omnis eligendi, commodi nam reprehenderit. Necessitatibus, asperiores ipsum? Ut vero iusto nesciunt aut dignissimos, numquam, assumenda itaque eius illo fugiat quasi commodi corporis quia expedita distinctio soluta minus odit alias laudantium doloribus. Voluptatibus non qui harum illo eveniet tenetur et fugiat maxime delectus magni explicabo incidunt doloribus cumque consectetur commodi voluptate sequi aspernatur nostrum, distinctio quae recusandae itaque. Inventore consectetur sapiente autem reprehenderit totam molestiae nam tempore recusandae laborum saepe quam a incidunt, in ea dolorum rerum delectus sit porro. Tenetur temporibus dolorum voluptatem aliquid aliquam! Unde ad dicta fuga veniam explicabo deserunt similique, architecto saepe ducimus aliquam libero, reprehenderit ipsa voluptate non!</p>
-    </div>
 
-    
-    
-    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="js/bootstrap.bundle.min.js"></script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-    -->
-    <script src="js/bootstrap.min.js"></script>
+      <script src="js/form-validation.js"></script>
   </body>
 </html>

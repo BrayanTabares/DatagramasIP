@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 //Datos previos
@@ -88,7 +88,7 @@ function generateBin (fragmento){
 function dividirStringEnArray (cadena,numDeCaracteres){
     let newArray=new Array(cadena.length/numDeCaracteres);
     for(let i=1;i<=newArray.length;i++){
-         newArray[i-1]=cadena.substring(((i-1)*numDeCaracteres),(i*numDeCaracteres));        
+         newArray[i-1]=cadena.substring(((i-1)*numDeCaracteres),(i*numDeCaracteres));
     }
     return newArray;
 }
@@ -153,7 +153,7 @@ function fragmentar(mtu,lenTotal,protocol,dirO,dirD){
 //document.write("<p><marquee><h1>HOOOOOOOOOOOOOLI</h1><marquee></p><p>MADAFAKA</p>")
 
 /*
-document.write(identy+"\n");
+document.write(identity+"\n");
 document.write(transform(192,2,9)+"\n");
 document.write(Number("192").toString(2));
 document.write("192.168.0.1".split("."));
