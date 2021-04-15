@@ -30,9 +30,10 @@
     <div class="py-5 text-center">
       <h2>Datagrama</h2>
     </div>
+<div class="container">
     <form class="needs-validation" novalidate>
       <div class="row g-4">
-        <div class="col-sm-1">
+        <div class="col-sm-2">
           <label for="MTU" class="form-label">MTU</label>
           <input type="text" class="form-control" id="MTU" placeholder="1500" value="" required>
           <div class="invalid-feedback">
@@ -40,7 +41,7 @@
           </div>
         </div>
 
-        <div class="col-sm-1">
+        <div class="col-sm-2">
           <label for="LEN_TOTAL" class="form-label">Longitud</label>
           <input type="text" class="form-control" id="LEN_TOTAL" placeholder="" value="" required>
           <div class="invalid-feedback">
@@ -48,23 +49,23 @@
           </div>
         </div>
 
-        <div class="col-sm-3">
-          <label for="DIR_O" class="form-label">Dirección IP Origen</label>
+        <div class="col-sm-2">
+          <label for="DIR_O" class="form-label">IP Origen</label>
           <input type="text" class="form-control" id="DIR_O" placeholder="" value="" required>
           <div class="invalid-feedback">
             Ingrese una dirección IP.
           </div>
         </div>
 
-        <div class="col-sm-3">
-          <label for="DIR_D" class="form-label">Dirección IP Destino</label>
+        <div class="col-sm-2">
+          <label for="DIR_D" class="form-label">IP Destino</label>
           <input type="text" class="form-control" id="DIR_D" placeholder="" value="" required>
           <div class="invalid-feedback">
             Ingrese una dirección IP.
           </div>
         </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-4">
           <label for="protocolo" class="form-label">Protocolo de nivel superior</label>
         <h6></h6>
           <div class="form-check form-check-inline">
@@ -81,9 +82,43 @@
           </div>
         </div>
       </div>
-      <hr class="my-4">
-        <button class="w-50 btn btn-primary btn-lg" onclick="calcular()" type="submit">Calcular</button>
+      
+      <hr></hr>
+      <div class="d-grid gap-2 btn-group col-6 mx-auto">
+        <button class="btn  btn-primary" onclick="calcular()" type="submit">Calcular Datagrma</button>
+        <button class="btn btn-primary" onclick="" type="submit">Generar Ejercicio</button>
+      </div>
     </form>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="row g-5">
       <div class="col-md-5 col-lg-5 order-md-last">
@@ -288,6 +323,7 @@
         </form>
       </div>
     </div>
+  </div>
   </main>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
