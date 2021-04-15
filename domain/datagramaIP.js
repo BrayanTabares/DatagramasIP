@@ -175,9 +175,13 @@ fragmentoPrueba=new fragmento(LEN_TOTAL,0,0,0);
 function calcular(){
 MTU = parseInt( document.getElementById("MTU").value);
 LEN_TOTAL = parseInt(document.getElementById("LEN_TOTAL").value);
-console.log(parseInt(document.getElementById("PROTOCOL").value))
-debugger
-PROTOCOL = PROTOCOL_LIST[ parseInt(document.getElementById("PROTOCOL").value)];
+
+var RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
+
+          for(i = 0; i < RADIO_PROTOCOLS.length; i++) {
+              if(RADIO_PROTOCOLS[i].checked)
+              PROTOCOL = PROTOCOL_LIST[parseInt(RADIO_PROTOCOLS[i].value)]
+          }
 DIR_O= document.getElementById("DIR_O").value;
 DIR_D= document.getElementById("DIR_D").value;
 
