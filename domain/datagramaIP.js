@@ -235,24 +235,24 @@ function calcular() {
      debugger;*/
 }
 function rellenarTabla(){
-  document.getElementById("Table_Body").innerHTML="";
-  let tableBody = document.getElementById("Table_Body");
+  document.getElementById("Select_Table_Body").innerHTML="";
+  let tableBody = document.getElementById("Select_Table_Body");
 
   for(let i = 0;i<FRAG_LIST.length;i++){
 
     let row = tableBody.insertRow(i)
-    row.style="cursor:pointer"
+    row.style="cursor:pointer";
     row.addEventListener("click", function(event) {
         rellenarTablaBinario(FRAG_LIST[i]);
         rellenarTablaHexadecimal(FRAG_LIST[i]);
         rellenarTablaWireShark(FRAG_LIST[i]);
     });
 
-    let cell1 = row.insertCell(0)
-    let cell2 = row.insertCell(1)
-    let cell3 = row.insertCell(2)
-    let cell4 = row.insertCell(3)
-    let cell5 = row.insertCell(4)
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+    let cell5 = row.insertCell(4);
 
     cell1.innerHTML = i+1;
     cell2.innerHTML = DIR_O;
@@ -262,7 +262,24 @@ function rellenarTabla(){
   }
 }
 function rellenarTablaBinario(fragment){
-console.log(fragment.binString);
+let binary = fragment.bin;
+document.getElementById("Binary_Table_Body").innerHTML="";
+let tableBody = document.getElementById("Binary_Table_Body");
+
+for(let i = 0;i<binary.length;i+=4){
+
+  let row = tableBody.insertRow(i != 0 ? i/4 : i);
+
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+  let cell4 = row.insertCell(3);
+
+  cell1.innerHTML = binary[i];
+  cell2.innerHTML = binary[i+1];
+  cell3.innerHTML = binary[i+2];
+  cell4.innerHTML = binary[i+3];
+}
 }
 function rellenarTablaHexadecimal(fragment){
 console.log(fragment.hexa);
