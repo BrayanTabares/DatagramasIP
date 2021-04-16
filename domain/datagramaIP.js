@@ -56,7 +56,7 @@ function protocolObject(nombre, numDecimal) {
 }
 
 function transform(valor, unidad = 2, tamano = 0) {
-    let aux = valor.toString(unidad);
+    let aux = parseInt(valor).toString(unidad);
     if (tamano != 0) {
         aux = aux.padStart(tamano, "0");
     }
