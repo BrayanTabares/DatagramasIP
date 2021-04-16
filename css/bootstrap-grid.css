@@ -132,8 +132,25 @@
 }
 
 .col-6 {
+
   flex: 0 0 auto;
   width: 50%;
+}
+
+.container{
+    width: 100%;
+    float: center;
+    border: solid 1px blue;
+    text-align: right;
+}
+.container button{
+    display: inline-block;
+}
+#btn  btn-primary{
+    float:left;
+}
+#btn btn-primary{
+    float:right;
 }
 
 .col-7 {
