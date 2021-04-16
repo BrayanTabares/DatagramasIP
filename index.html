@@ -24,12 +24,12 @@
 </head>
 
 <body class="bg-light">
-  
+
   <div class="container py-4">
     <main>
       <img class="d-block mx-auto mb-4" src="images/kirby.png" alt="" width="62" height="67">
   </div>
-  
+
   <div class="text-center">
     <h2>Datagrama IP</h2>
   </div>
@@ -69,15 +69,15 @@
         </div>
       </div>
       <div class="row py-4 justify-content-center">
-        
+
         <div class="col-sm-6">
           <label for="protocolo" class="form-label">Protocolo de nivel superior :&nbsp;&nbsp;&nbsp;</label>
-          
+
           <div class="form-check form-check-inline">
             <input id="ICMP" name="PROTOCOL" value="0" type="radio" class="form-check-input" checked required>
             <label class="form-check-label" for="ICMP">ICMP</label>
           </div>
-          
+
           <div class="form-check form-check-inline">
             <input id="TCP" name="PROTOCOL" value="1" type="radio" class="form-check-input" required>
             <label class="form-check-label" for="TCP">TCP</label>
@@ -87,19 +87,17 @@
             <label class="form-check-label" for="UDP">UDP</label>
           </div>
         </div>
-        
-      </div>
-      <hr class="my-3">
-      <div class="row text-center">
-        <div class="col-sm-6">
-          <button class="w-50 btn btn-primary btn-lg" onclick="calcular()" type="submit">Generar</button>
-        </div>
-        
-        <div class="col-sm-6">
-          <button class="w-50 btn btn-primary btn-lg" onclick="calcular()" type="submit">Calcular</button>
-        </div>
       </div>
     </form>
+    <hr class="my-3">
+    <div class="row text-center">
+      <div class="col-sm-6">
+        <button class="w-50 btn btn-primary btn-lg" id="generar">Generar</button>
+      </div>
+      <div class="col-sm-6">
+        <button class="w-50 btn btn-primary btn-lg" id="calcular">Calcular</button>
+      </div>
+    </div>
   </div>
   <div class="row g-5">
     <div class="col-md-5 col-lg-5 order-md-last">
