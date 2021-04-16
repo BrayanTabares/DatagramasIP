@@ -19,21 +19,14 @@
 
 
 
-  <!-- Custom styles for this template -->
-  <link href="css/form-validation.css" rel="stylesheet">
-</head>
-
-<body class="bg-light">
-
-  <div class="container py-4">
-    <main>
-      <img class="d-block mx-auto mb-4" src="images/kirby.png" alt="" width="62" height="67">
-  </div>
-
-  <div class="text-center">
-    <h2>Datagrama IP</h2>
-  </div>
-  <div class="container text-center py-5">
+<div class="container">
+  <main>
+      <img class="d-block mx-auto mb-4" src="images/brayan.jpg" alt="" width="62" height="67">
+    </div>
+    <div class="py-5 text-center">
+      <h2>Datagrama</h2>
+    </div>
+<div class="container">
     <form class="needs-validation" novalidate>
       <div class="row g-4">
         <div class="col-sm-2">
@@ -52,17 +45,17 @@
           </div>
         </div>
 
-        <div class="col-sm-4">
-          <label for="DIR_O" class="form-label">Dirección IP Origen</label>
-          <input type="text" class="form-control" id="DIR_O" placeholder="192.168.0.1" value="" required>
+        <div class="col-sm-2">
+          <label for="DIR_O" class="form-label">IP Origen</label>
+          <input type="text" class="form-control" id="DIR_O" placeholder="" value="" required>
           <div class="invalid-feedback">
             Ingrese una dirección IP.
           </div>
         </div>
 
-        <div class="col-sm-4">
-          <label for="DIR_D" class="form-label">Dirección IP Destino</label>
-          <input type="text" class="form-control" id="DIR_D" placeholder="192.168.0.2" value="" required>
+        <div class="col-sm-2">
+          <label for="DIR_D" class="form-label">IP Destino</label>
+          <input type="text" class="form-control" id="DIR_D" placeholder="" value="" required>
           <div class="invalid-feedback">
             Ingrese una dirección IP.
           </div>
@@ -70,9 +63,9 @@
       </div>
       <div class="row py-4 justify-content-center">
 
-        <div class="col-sm-6">
-          <label for="protocolo" class="form-label">Protocolo de nivel superior :&nbsp;&nbsp;&nbsp;</label>
-
+      <div class="col-sm-4">
+          <label for="protocolo" class="form-label">Protocolo de nivel superior</label>
+        <h6></h6>
           <div class="form-check form-check-inline">
             <input id="ICMP" name="PROTOCOL" value="0" type="radio" class="form-check-input" checked required>
             <label class="form-check-label" for="ICMP">ICMP</label>
@@ -87,6 +80,12 @@
             <label class="form-check-label" for="UDP">UDP</label>
           </div>
         </div>
+      </div>
+      
+      <hr></hr>
+      <div class="d-grid gap-2 btn-group col-6 mx-auto">
+        <button class="btn  btn-primary" onclick="calcular()" type="submit">Calcular Datagrma</button>
+        <button class="btn btn-primary" onclick="" type="submit">Generar Ejercicio</button>
       </div>
     </form>
     <hr class="my-3">
@@ -140,22 +139,47 @@
         </li>
       </ul>
 
-      <form class="card p-2">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Promo code">
-          <button type="submit" class="btn btn-secondary">Redeem</button>
-        </div>
-      </form>
-    </div>
-    <div class="col-md-7 col-lg-6">
-      <h4 class="mb-3">Billing address</h4>
-      <form class="needs-validation" novalidate>
-        <div class="row g-3">
-          <div class="col-sm-6">
-            <label for="firstName" class="form-label">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-            <div class="invalid-feedback">
-              Josecito furry.
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-5 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Your cart</span>
+          <span class="badge bg-primary rounded-pill">3</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Product name</h6>
+              <small class="text-muted">Brief description</small>
             </div>
           </div>
 
