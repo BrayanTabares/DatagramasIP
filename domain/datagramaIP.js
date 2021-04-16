@@ -18,6 +18,8 @@ let LEN_TOTAL = 0;
 let PROTOCOL = PROTOCOL_LIST[1];
 let DIR_O = "";
 let DIR_D = "";
+
+let VERIFY_INPUTS = true;
 /*
 let MTU = 1500;
 let LEN_TOTAL = 3500;
@@ -191,9 +193,13 @@ function generarProblema() {
     document.querySelector("#DIR_D").value = Math.round(Math.random()*255)+"."+Math.round(Math.random()*255)+"."+Math.round(Math.random()*255)+"."+Math.round(Math.random()*255);
 }
 
+
 function calcular() {
+
+
     MTU = parseInt(document.querySelector("#MTU").value);
     LEN_TOTAL = parseInt(document.querySelector("#LEN_TOTAL").value);
+/*
     let UDP = document.getElementById('#UDP');
     let TCP = document.querySelector("#TCP");
     PROTOCOL = PROTOCOL_LIST[0];
@@ -202,6 +208,15 @@ function calcular() {
     } else if (TCP != null && TCP.checked) {
         PROTOCOL = PROTOCOL_LIST[1];
     }
+*/
+
+    //Obtener el protocolo seleccionado
+    var RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
+          for(i = 0; i < RADIO_PROTOCOLS.length; i++) {
+              if(RADIO_PROTOCOLS[i].checked)
+              PROTOCOL = PROTOCOL_LIST[parseInt(RADIO_PROTOCOLS[i].value)]
+          }
+
     console.log(PROTOCOL);
     DIR_O = document.querySelector("#DIR_O").value;
     DIR_D = document.querySelector("#DIR_D").value;
@@ -211,10 +226,47 @@ function calcular() {
     //
 
     fragmentar(MTU, LEN_TOTAL, PROTOCOL_LIST[0], DIR_O, DIR_D);
+    rellenarTabla();
     console.log(FRAG_LIST);
 
     /* const divResult= document.createElement("div");
      divResult.textContent = FRAG_LIST;
      divResult.className = "text-center";
      debugger;*/
+}
+function rellenarTabla(){
+  document.getElementById("Table_Body").innerHTML="";
+  let tableBody = document.getElementById("Table_Body");
+
+  for(let i = 0;i<FRAG_LIST.length;i++){
+
+    let row = tableBody.insertRow(i)
+    row.style="cursor:pointer"
+    row.addEventListener("click", function(event) {
+        rellenarTablaBinario(FRAG_LIST[i]);
+        rellenarTablaHexadecimal(FRAG_LIST[i]);
+        rellenarTablaWireShark(FRAG_LIST[i]);
+    });
+
+    let cell1 = row.insertCell(0)
+    let cell2 = row.insertCell(1)
+    let cell3 = row.insertCell(2)
+    let cell4 = row.insertCell(3)
+    let cell5 = row.insertCell(4)
+
+    cell1.innerHTML = i+1;
+    cell2.innerHTML = DIR_O;
+    cell3.innerHTML = DIR_D;
+    cell4.innerHTML = PROTOCOL.nombre;
+    cell5.innerHTML = FRAG_LIST[i].len;
+  }
+}
+function rellenarTablaBinario(fragment){
+console.log(fragment.binString);
+}
+function rellenarTablaHexadecimal(fragment){
+console.log(fragment.hexa);
+}
+function rellenarTablaWireShark(fragment){
+
 }
