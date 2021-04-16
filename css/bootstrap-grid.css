@@ -136,8 +136,12 @@
   flex: 0 0 auto;
   width: 50%;
 }
+<<<<<<< HEAD
 
 .container{
+=======
+.container1{
+>>>>>>> 71ebf0d1cde49f3a45ab6d01befd7323411f7087
     width: 100%;
     float: center;
     border: solid 1px blue;
@@ -152,7 +156,10 @@
 #btn btn-primary{
     float:right;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 71ebf0d1cde49f3a45ab6d01befd7323411f7087
 .col-7 {
   flex: 0 0 auto;
   width: 58.3333333333%;
