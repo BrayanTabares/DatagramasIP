@@ -262,28 +262,48 @@ function rellenarTabla(){
   }
 }
 function rellenarTablaBinario(fragment, number){
-let binary = fragment.bin;
-document.getElementById("Binary_Table_Body").innerHTML="";
-document.getElementById("Binary_Table_Title").innerHTML="Fragmento Binario #"+number;
-let tableBody = document.getElementById("Binary_Table_Body");
+  let binary = fragment.bin;
+  document.getElementById("Binary_Table_Body").innerHTML="";
+  document.getElementById("Binary_Table_Title").innerHTML="Fragmento Binario #"+number;
+  let tableBody = document.getElementById("Binary_Table_Body");
 
-for(let i = 0;i<binary.length;i+=4){
+  for(let i = 0;i<binary.length;i+=4){
 
-  let row = tableBody.insertRow(i != 0 ? i/4 : i);
+    let row = tableBody.insertRow(i != 0 ? i/4 : i);
 
-  let cell1 = row.insertCell(0);
-  let cell2 = row.insertCell(1);
-  let cell3 = row.insertCell(2);
-  let cell4 = row.insertCell(3);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
 
-  cell1.innerHTML = binary[i];
-  cell2.innerHTML = binary[i+1];
-  cell3.innerHTML = binary[i+2];
-  cell4.innerHTML = binary[i+3];
-}
+    cell1.innerHTML = binary[i];
+    cell2.innerHTML = binary[i+1];
+    cell3.innerHTML = binary[i+2];
+    cell4.innerHTML = binary[i+3];
+  }
 }
 function rellenarTablaHexadecimal(fragment, number){
-console.log(fragment.hexa);
+  let hexa = fragment.hexa;
+  document.getElementById("Hexa_Table_Body").innerHTML="";
+  document.getElementById("Hexa_Table_Title").innerHTML="Fragmento Hexadecimal #"+number;
+  let tableBody = document.getElementById("Hexa_Table_Body");
+
+  for(let i = 0;i<hexa.length;i+=5){
+
+    let row = tableBody.insertRow(i != 0 ? i/5 : i);
+
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+    let cell5 = row.insertCell(4);
+
+    cell1.innerHTML = hexa[i];
+    cell2.innerHTML = hexa[i+1];
+    cell3.innerHTML = hexa[i+2];
+    cell4.innerHTML = hexa[i+3];
+    cell5.innerHTML = hexa[i+4];
+  }
 }
 function rellenarTablaWireShark(fragment, number){
 
