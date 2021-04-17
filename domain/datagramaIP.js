@@ -316,7 +316,7 @@ let fragmentText = "No. Identificación: "+IDENTY+"\n";
     fragmentText += "Protocolo: "+PROTOCOL.nombre+"\n";
     fragmentText += "Versión del datagrama: "+VERSION+"\n";
     fragmentText += "Longitud Total: "+LEN_TOTAL+"\n";
-    fragmentText += "Servicios diferenciados: "+SER_DIF+"\n";
+    fragmentText += "Servicios diferenciados: "+(SER_DIF==0? "CS0" : "LE")+"\n";
     fragmentText += "MTU: "+MTU+"\n";
     fragmentText += "Longitud Encabezado: "+fragment.len+"\n";
     fragmentText += "Desplazamiento: "+fragment.despl+"\n";
