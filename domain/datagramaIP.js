@@ -141,15 +141,12 @@ function fragmentar(mtu, lenTotal, protocol, dirO, dirD) {
     //Realizar fragmentación
     FRAG_LIST = new Array(numFragments);
     for (let i = 0; i < numFragments; i++) {
-        let len = mtu;
+        let len = lastLen;
         let mostFragments = 0;
-        //Es el último fragmento?
-        if (boolFragmentar) {
-            if ((i + 1) < numFragments) {
-                mostFragments = 1;
-            } else {
-                len = lastLen;
-            }
+        //Es un fragmento intermedio?
+        if ((i + 1) < numFragments) {
+            mostFragments = 1;
+            len=mtu;
         }
         let frag = new fragmento(len, 0, mostFragments, (i * (mtu - tamanoEncabezado)) / 8)
         FRAG_LIST[i] = frag;
@@ -187,10 +184,10 @@ const botonGenerar = document.querySelector("#generar");
 botonGenerar.addEventListener("click", (event) => generarProblema());
 
 function generarProblema() {
-    document.querySelector("#MTU").value = Math.round((Math.random() * 30) + 5) * 100;
+    document.querySelector("#MTU").value = Math.round((Math.random() * 908) + 10) * 10;
     document.querySelector("#LEN_TOTAL").value = Math.round((Math.random() * 10000) + 50);
-    document.querySelector("#DIR_O").value = Math.round(Math.random()*255)+"."+Math.round(Math.random()*255)+"."+Math.round(Math.random()*255)+"."+Math.round(Math.random()*255);
-    document.querySelector("#DIR_D").value = Math.round(Math.random()*255)+"."+Math.round(Math.random()*255)+"."+Math.round(Math.random()*255)+"."+Math.round(Math.random()*255);
+    document.querySelector("#DIR_O").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
+    document.querySelector("#DIR_D").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
 }
 
 
@@ -199,23 +196,23 @@ function calcular() {
 
     MTU = parseInt(document.querySelector("#MTU").value);
     LEN_TOTAL = parseInt(document.querySelector("#LEN_TOTAL").value);
-/*
-    let UDP = document.getElementById('#UDP');
-    let TCP = document.querySelector("#TCP");
-    PROTOCOL = PROTOCOL_LIST[0];
-    if (UDP != null && UDP.checked) {
-        PROTOCOL = PROTOCOL_LIST[2];
-    } else if (TCP != null && TCP.checked) {
-        PROTOCOL = PROTOCOL_LIST[1];
-    }
-*/
+    /*
+        let UDP = document.getElementById('#UDP');
+        let TCP = document.querySelector("#TCP");
+        PROTOCOL = PROTOCOL_LIST[0];
+        if (UDP != null && UDP.checked) {
+            PROTOCOL = PROTOCOL_LIST[2];
+        } else if (TCP != null && TCP.checked) {
+            PROTOCOL = PROTOCOL_LIST[1];
+        }
+    */
 
     //Obtener el protocolo seleccionado
     var RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
-          for(i = 0; i < RADIO_PROTOCOLS.length; i++) {
-              if(RADIO_PROTOCOLS[i].checked)
-              PROTOCOL = PROTOCOL_LIST[parseInt(RADIO_PROTOCOLS[i].value)]
-          }
+    for (i = 0; i < RADIO_PROTOCOLS.length; i++) {
+        if (RADIO_PROTOCOLS[i].checked)
+            PROTOCOL = PROTOCOL_LIST[parseInt(RADIO_PROTOCOLS[i].value)]
+    }
 
     console.log(PROTOCOL);
     DIR_O = document.querySelector("#DIR_O").value;
@@ -234,76 +231,76 @@ function calcular() {
      divResult.className = "text-center";
      debugger;*/
 }
-function rellenarTabla(){
-  document.getElementById("Select_Table_Body").innerHTML="";
-  let tableBody = document.getElementById("Select_Table_Body");
+function rellenarTabla() {
+    document.getElementById("Select_Table_Body").innerHTML = "";
+    let tableBody = document.getElementById("Select_Table_Body");
 
-  for(let i = 0;i<FRAG_LIST.length;i++){
+    for (let i = 0; i < FRAG_LIST.length; i++) {
 
-    let row = tableBody.insertRow(i)
-    row.style="cursor:pointer";
-    row.addEventListener("click", function(event) {
-        rellenarTablaBinario(FRAG_LIST[i], i+1);
-        rellenarTablaHexadecimal(FRAG_LIST[i], i+1);
-        rellenarTablaWireShark(FRAG_LIST[i], i+1);
-    });
+        let row = tableBody.insertRow(i)
+        row.style = "cursor:pointer";
+        row.addEventListener("click", function (event) {
+            rellenarTablaBinario(FRAG_LIST[i], i + 1);
+            rellenarTablaHexadecimal(FRAG_LIST[i], i + 1);
+            rellenarTablaWireShark(FRAG_LIST[i], i + 1);
+        });
 
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
-    let cell5 = row.insertCell(4);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
 
-    cell1.innerHTML = i+1;
-    cell2.innerHTML = DIR_O;
-    cell3.innerHTML = DIR_D;
-    cell4.innerHTML = PROTOCOL.nombre;
-    cell5.innerHTML = FRAG_LIST[i].len;
-  }
+        cell1.innerHTML = i + 1;
+        cell2.innerHTML = DIR_O;
+        cell3.innerHTML = DIR_D;
+        cell4.innerHTML = PROTOCOL.nombre;
+        cell5.innerHTML = FRAG_LIST[i].len;
+    }
 }
-function rellenarTablaBinario(fragment, number){
-  let binary = fragment.bin;
-  document.getElementById("Binary_Table_Body").innerHTML="";
-  document.getElementById("Binary_Table_Title").innerHTML="Fragmento Binario #"+number;
-  let tableBody = document.getElementById("Binary_Table_Body");
+function rellenarTablaBinario(fragment, number) {
+    let binary = fragment.bin;
+    document.getElementById("Binary_Table_Body").innerHTML = "";
+    document.getElementById("Binary_Table_Title").innerHTML = "Fragmento Binario #" + number;
+    let tableBody = document.getElementById("Binary_Table_Body");
 
-  for(let i = 0;i<binary.length;i+=4){
+    for (let i = 0; i < binary.length; i += 4) {
 
-    let row = tableBody.insertRow(i != 0 ? i/4 : i);
+        let row = tableBody.insertRow(i != 0 ? i / 4 : i);
 
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
 
-    cell1.innerHTML = binary[i];
-    cell2.innerHTML = binary[i+1];
-    cell3.innerHTML = binary[i+2];
-    cell4.innerHTML = binary[i+3];
-  }
+        cell1.innerHTML = binary[i];
+        cell2.innerHTML = binary[i + 1];
+        cell3.innerHTML = binary[i + 2];
+        cell4.innerHTML = binary[i + 3];
+    }
 }
-function rellenarTablaHexadecimal(fragment, number){
-  let hexa = fragment.hexa;
-  document.getElementById("Hexa_Table_Body").innerHTML="";
-  document.getElementById("Hexa_Table_Title").innerHTML="Fragmento Hexadecimal #"+number;
-  let tableBody = document.getElementById("Hexa_Table_Body");
+function rellenarTablaHexadecimal(fragment, number) {
+    let hexa = fragment.hexa;
+    document.getElementById("Hexa_Table_Body").innerHTML = "";
+    document.getElementById("Hexa_Table_Title").innerHTML = "Fragmento Hexadecimal #" + number;
+    let tableBody = document.getElementById("Hexa_Table_Body");
 
-  for(let i = 0;i<hexa.length;i+=5){
+    for (let i = 0; i < hexa.length; i += 5) {
 
-    let row = tableBody.insertRow(i != 0 ? i/5 : i);
+        let row = tableBody.insertRow(i != 0 ? i / 5 : i);
 
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
-    let cell5 = row.insertCell(4);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
 
-    cell1.innerHTML = hexa[i];
-    cell2.innerHTML = hexa[i+1];
-    cell3.innerHTML = hexa[i+2];
-    cell4.innerHTML = hexa[i+3];
-    cell5.innerHTML = hexa[i+4];
-  }
+        cell1.innerHTML = hexa[i];
+        cell2.innerHTML = hexa[i + 1];
+        cell3.innerHTML = hexa[i + 2];
+        cell4.innerHTML = hexa[i + 3];
+        cell5.innerHTML = hexa[i + 4];
+    }
 }
 function rellenarTablaWireShark(fragment, number){
 let textArea = document.getElementById("Datagram_TextArea");
