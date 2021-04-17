@@ -302,6 +302,24 @@ function rellenarTablaHexadecimal(fragment, number) {
         cell5.innerHTML = hexa[i + 4];
     }
 }
-function rellenarTablaWireShark(fragment, number) {
+function rellenarTablaWireShark(fragment, number){
+let textArea = document.getElementById("Datagram_TextArea");
+document.getElementById("Datagram_TextArea_Title").innerHTML="Fragmento Wireshark #"+number;
 
+let fragmentText = "No. Identificación: "+IDENTY+"\n";
+    fragmentText += "Tiempo de vida: "+TIME_LIFE+"ms\n";
+    fragmentText += "IPv4 Origen: "+DIR_O+"\n";
+    fragmentText += "IPv4 Destino: "+DIR_D+"\n";
+    fragmentText += "Protocolo: "+PROTOCOL.nombre+"\n";
+    fragmentText += "Versión del datagrama: "+VERSION+"\n";
+    fragmentText += "Longitud Total: "+LEN_TOTAL+"\n";
+    fragmentText += "Servicios diferenciados: "+(SER_DIF==0? "CS0" : "LE")+"\n";
+    fragmentText += "MTU: "+MTU+"\n";
+    fragmentText += "Longitud Encabezado: "+fragment.len+"\n";
+    fragmentText += "Desplazamiento: "+fragment.despl+"\n";
+    fragmentText += "No fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
+    fragmentText += "Más fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
+    fragmentText += "Comprobación de origen: "+fragment.sum+"\n";
+
+    textArea.innerHTML=fragmentText;
 }
