@@ -25,7 +25,7 @@
 
 <div class="container">
   <main>
-      <img class="d-block mx-auto mb-4" src="images/brayan.jpg" alt="" width="62" height="67">
+      <img class="d-block mx-auto mb-4" src="images/perfeccion.png" alt="" width="130px" height="200">
     </div>
     <div class="py-5 text-center">
       <h2>Datagrama</h2>
@@ -84,33 +84,37 @@
         </div>
       </div>
     </form>
-      &ensp;
+      &emsp;
       <div class="container1">
         <button class="btn  btn-primary"style="width: 49%" id="calcular">Calcular Datagrama</button>
         <button class="btn btn-primary" style="width: 49%"id="generar">Generar Ejercicio</button>
       </div>
+      &emsp;
       <hr></hr>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Fuente</th>
-            <th scope="col">Destino</th>
-            <th scope="col">Protocolo</th>
-            <th scope="col">Longitud</th>
-          </tr>
-        </thead>
-        <tbody id="Select_Table_Body">
-          <tr>
-            <td>-</td>
-            <td> ---.---.---.---</td>
-            <td>---.---.---.---</td>
-            <td>---</td>
-            <td>---</td>
-          </tr>
-        </tbody>
-      </table>
-    <div></div>
+      <div style="height: 150px;overflow-y: scroll;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Fuente</th>
+              <th scope="col">Destino</th>
+              <th scope="col">Protocolo</th>
+              <th scope="col">Longitud</th>
+            </tr>
+          </thead>
+          <tbody id="Select_Table_Body" >
+            <tr>
+              <td>-</td>
+              <td> ---.---.---.---</td>
+              <td>---.---.---.---</td>
+              <td>---</td>
+              <td>---</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr></hr>
+    &emsp;
     <div class="row g-5">
       <div class="col-md-5 col-lg-5 order-md-last">
         <table class="table">
@@ -149,7 +153,7 @@
       <div class="col-md-7 col-lg-6">
         <h5 id="Datagram_TextArea_Title">Fragmento Wireshark</h5>
         <div class="form-floating">
-          <textarea class="form-control" id="Datagram_TextArea" style="height: 480px"></textarea>
+          <textarea disabled class="form-control" id="Datagram_TextArea" style="height: 480px; resize:none"></textarea>
         </div>
       </div>
     </div>
@@ -157,12 +161,7 @@
   </main>
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2017–2021 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
+    <p class="mb-1">2021 Universidad del Quindío</p>
   </footer>
 </div>
 
