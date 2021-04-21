@@ -130,13 +130,20 @@ function restarHexa(cadena1, cadena2) {
 function fragmentar(mtu, lenTotal, protocol, dirO, dirD) {
     let tamanoEncabezado = 20;
     let numFragments = 1;
+    let interLen=lenTotal;
     let lastLen = lenTotal;
     let boolFragmentar = false;
     //Es necesario fragmentar?
     if (mtu < lenTotal) {
-        numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (mtu - tamanoEncabezado));
+        interLen=mtu;
+        numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (mtu - tamanoEncabezado));    
         lastLen = lenTotal - ((mtu - tamanoEncabezado) * (numFragments - 1));
         boolFragmentar = true;
+        if(((mtu-tamanoEncabezado)%8)!=0){
+            interLen=(Math.floor((mtu-tamanoEncabezado)/8)*8)+tamanoEncabezado;
+            numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (interLen - tamanoEncabezado));     
+            lastLen = lenTotal - ((interLen - tamanoEncabezado) * (numFragments - 1));
+        }
     }
     //Realizar fragmentación
     FRAG_LIST = new Array(numFragments);
@@ -146,9 +153,9 @@ function fragmentar(mtu, lenTotal, protocol, dirO, dirD) {
         //Es un fragmento intermedio?
         if ((i + 1) < numFragments) {
             mostFragments = 1;
-            len=mtu;
+            len=interLen;
         }
-        let frag = new fragmento(len, 0, mostFragments, (i * (mtu - tamanoEncabezado)) / 8)
+        let frag = new fragmento(len, 0, mostFragments, (i * (interLen - tamanoEncabezado)) / 8)
         FRAG_LIST[i] = frag;
     }
 }
@@ -184,10 +191,12 @@ const botonGenerar = document.querySelector("#generar");
 botonGenerar.addEventListener("click", (event) => generarProblema());
 
 function generarProblema() {
-    document.querySelector("#MTU").value = Math.round((Math.random() * 908) + 10) * 10;
-    document.querySelector("#LEN_TOTAL").value = Math.round((Math.random() * 10000) + 50);
+    document.querySelector("#MTU").value = Math.round((Math.random() * 65435) + 100);
+    document.querySelector("#LEN_TOTAL").value = Math.round((Math.random() * 65485) + 50);
     document.querySelector("#DIR_O").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
     document.querySelector("#DIR_D").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
+    let RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
+    RADIO_PROTOCOLS[Math.round(Math.random()*2)].click();
 }
 
 
@@ -250,12 +259,16 @@ function rellenarTabla() {
         let cell3 = row.insertCell(2);
         let cell4 = row.insertCell(3);
         let cell5 = row.insertCell(4);
+        let cell6 = row.insertCell(5);
+        let cell7 = row.insertCell(6);
 
         cell1.innerHTML = i + 1;
         cell2.innerHTML = DIR_O;
         cell3.innerHTML = DIR_D;
         cell4.innerHTML = PROTOCOL.nombre;
         cell5.innerHTML = FRAG_LIST[i].len;
+        cell6.innerHTML = FRAG_LIST[i].len-20;
+        cell7.innerHTML = FRAG_LIST[i].despl;
     }
 }
 function rellenarTablaBinario(fragment, number) {
@@ -306,20 +319,26 @@ function rellenarTablaWireShark(fragment, number){
 let textArea = document.getElementById("Datagram_TextArea");
 document.getElementById("Datagram_TextArea_Title").innerHTML="Fragmento Wireshark #"+number;
 
-let fragmentText = "No. Identificación: "+IDENTY+"\n";
-    fragmentText += "Tiempo de vida: "+TIME_LIFE+"ms\n";
-    fragmentText += "IPv4 Origen: "+DIR_O+"\n";
-    fragmentText += "IPv4 Destino: "+DIR_D+"\n";
-    fragmentText += "Protocolo: "+PROTOCOL.nombre+"\n";
-    fragmentText += "Versión del datagrama: "+VERSION+"\n";
-    fragmentText += "Longitud Total: "+LEN_TOTAL+"\n";
-    fragmentText += "Servicios diferenciados: "+(SER_DIF==0? "CS0" : "LE")+"\n";
-    fragmentText += "MTU: "+MTU+"\n";
-    fragmentText += "Longitud Encabezado: "+fragment.len+"\n";
-    fragmentText += "Desplazamiento: "+fragment.despl+"\n";
-    fragmentText += "No fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
-    fragmentText += "Más fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
-    fragmentText += "Comprobación de origen: "+fragment.sum+"\n";
+let fragmentText = "- MTU: "+MTU+"\n";
+    fragmentText += "- Versión del datagrama: "+VERSION+"\n";
+    fragmentText += "- Versión del datagrama: "+LONG_ENCABEZADO+"\n";
+    fragmentText += "- Servicios diferenciados: "+(SER_DIF==0? "CS0" : "LE")+"\n";
+    fragmentText += "- Longitud Datagrama: "+fragment.len+"\n";
+    fragmentText += "- No. Identificación: "+IDENTY+"\n";
+    fragmentText += "- Flags: "+"\n";
+    fragmentText += "\tNo fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
+    fragmentText += "\tMás fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
+    fragmentText += "- Desplazamiento: "+fragment.despl+"\n";
+    fragmentText += "- Tiempo de vida: "+TIME_LIFE+"ms\n";  
+    fragmentText += "- Protocolo: "+PROTOCOL.nombre+"\n";
+    fragmentText += "- Suma de comprobación: "+fragment.sum+"\n";
+    fragmentText += "- IPv4 Origen: "+DIR_O+"\n";
+    fragmentText += "- IPv4 Destino: "+DIR_D+"\n";
+    
+    
+   
+    
+    
 
     textArea.innerHTML=fragmentText;
 }
