@@ -20,23 +20,13 @@ let DIR_O = "";
 let DIR_D = "";
 
 let VERIFY_INPUTS = true;
-/*
-let MTU = 1500;
-let LEN_TOTAL = 3500;
-let PROTOCOL = PROTOCOL_LIST[0];
-let DIR_O = "192.168.0.1";
-let DIR_D = "192.168.0.2";
-*/
-//Datos calculados
 
 //lista de fragmentos
 let FRAG_LIST = [];
 
-
 /**
  * FUNCIONES
  */
-
 
 function fragmento(len, df, mf, despl) {
     this.len = len;
@@ -160,29 +150,8 @@ function fragmentar(mtu, lenTotal, protocol, dirO, dirD) {
     }
 }
 
-
-
-//document.write("<p><marquee><h1>HOOOOOOOOOOOOOLI</h1><marquee></p><p>MADAFAKA</p>")
-
-/*
-document.write(identity+"\n");
-document.write(transform(192,2,9)+"\n");
-document.write(Number("192").toString(2));
-document.write("192.168.0.1".split("."));
-document.write("192.168.0.1".split("."));
-*/
-
-fragmentoPrueba = new fragmento(LEN_TOTAL, 0, 0, 0);
-//console.log(generateBin(fragmentoPrueba));
-//console.log(generateHexa(fragmentoPrueba));
-//console.log(fragmentoPrueba.binString);
-//console.log(fragmentoPrueba.bin);
-//console.log(fragmentoPrueba.hexa);
-
 //Expresión que regula el formato de 4 numeros con puntos intermedios, NO regula un numero maximo de 255
 const IP = /^([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)$/;
-
-//console.log(IP.test("192.168.0.300"));
 
 const botonCalcular = document.querySelector("#calcular");
 botonCalcular.addEventListener("click", (event) => calcular());
@@ -199,22 +168,9 @@ function generarProblema() {
     RADIO_PROTOCOLS[Math.round(Math.random()*2)].click();
 }
 
-
 function calcular() {
-
-
     MTU = parseInt(document.querySelector("#MTU").value);
     LEN_TOTAL = parseInt(document.querySelector("#LEN_TOTAL").value);
-    /*
-        let UDP = document.getElementById('#UDP');
-        let TCP = document.querySelector("#TCP");
-        PROTOCOL = PROTOCOL_LIST[0];
-        if (UDP != null && UDP.checked) {
-            PROTOCOL = PROTOCOL_LIST[2];
-        } else if (TCP != null && TCP.checked) {
-            PROTOCOL = PROTOCOL_LIST[1];
-        }
-    */
 
     //Obtener el protocolo seleccionado
     var RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
@@ -235,10 +191,6 @@ function calcular() {
     rellenarTabla();
     console.log(FRAG_LIST);
 
-    /* const divResult= document.createElement("div");
-     divResult.textContent = FRAG_LIST;
-     divResult.className = "text-center";
-     debugger;*/
 }
 function rellenarTabla() {
     document.getElementById("Select_Table_Body").innerHTML = "";
@@ -335,10 +287,5 @@ let fragmentText = "- MTU: "+MTU+"\n";
     fragmentText += "- IPv4 Origen: "+DIR_O+"\n";
     fragmentText += "- IPv4 Destino: "+DIR_D+"\n";
     
-    
-   
-    
-    
-
     textArea.innerHTML=fragmentText;
 }
