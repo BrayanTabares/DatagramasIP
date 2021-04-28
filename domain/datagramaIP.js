@@ -126,12 +126,12 @@ function fragmentar(mtu, lenTotal, protocol, dirO, dirD) {
     //Es necesario fragmentar?
     if (mtu < lenTotal) {
         interLen=mtu;
-        numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (mtu - tamanoEncabezado));    
+        numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (mtu - tamanoEncabezado));
         lastLen = lenTotal - ((mtu - tamanoEncabezado) * (numFragments - 1));
         boolFragmentar = true;
         if(((mtu-tamanoEncabezado)%8)!=0){
             interLen=(Math.floor((mtu-tamanoEncabezado)/8)*8)+tamanoEncabezado;
-            numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (interLen - tamanoEncabezado));     
+            numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (interLen - tamanoEncabezado));
             lastLen = lenTotal - ((interLen - tamanoEncabezado) * (numFragments - 1));
         }
     }
@@ -150,14 +150,17 @@ function fragmentar(mtu, lenTotal, protocol, dirO, dirD) {
     }
 }
 
-//Expresión que regula el formato de 4 numeros con puntos intermedios, NO regula un numero maximo de 255
-const IP = /^([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)$/;
+
+
+
 
 const botonCalcular = document.querySelector("#calcular");
 botonCalcular.addEventListener("click", (event) => calcular());
 
 const botonGenerar = document.querySelector("#generar");
 botonGenerar.addEventListener("click", (event) => generarProblema());
+
+
 
 function generarProblema() {
     document.querySelector("#MTU").value = Math.round((Math.random() * 65435) + 100);
@@ -169,8 +172,27 @@ function generarProblema() {
 }
 
 function calcular() {
+    
+    var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     MTU = parseInt(document.querySelector("#MTU").value);
+    //validacion del tamaño del MTU/ 65535 es 2^16 -1(64 kilobytes)
+    if(MTU>100&&MTU<65535){
+      alert("nice cock bro");
+    }
+    else{
+      alert("Usted ha ingresado un MTU invalido");
+      return false;
+       }
+
     LEN_TOTAL = parseInt(document.querySelector("#LEN_TOTAL").value);
+    //valida la Longitud
+    if(LEN_TOTAL>50&&MTU<65535){
+      alert("nice boypussy");
+    }
+    else{
+      alert("Usted ha ingresado un MTU invalido");
+      return false;
+       }
 
     //Obtener el protocolo seleccionado
     var RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
@@ -183,8 +205,21 @@ function calcular() {
     DIR_O = document.querySelector("#DIR_O").value;
     DIR_D = document.querySelector("#DIR_D").value;
 
-    //Comprobar valores
-
+    //valida direcciones ip origen y destino
+    if(DIR_O.match(ipformat)){
+      alert("nice clit sis")
+    }
+    else{
+      alert("Usted ha ingresado una direccion ip de origen invalida");
+      return false;
+    }
+    if(DIR_D.match(ipformat)){
+      alert("nice asshole homie")
+    }
+    else{
+      alert("Usted ha ingresado una direccion ip de destino invalida");
+      return false;
+    }
     //
 
     fragmentar(MTU, LEN_TOTAL, PROTOCOL_LIST[0], DIR_O, DIR_D);
@@ -281,11 +316,11 @@ let fragmentText = "- MTU: "+MTU+"\n";
     fragmentText += "\tNo fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
     fragmentText += "\tMás fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
     fragmentText += "- Desplazamiento: "+fragment.despl+"\n";
-    fragmentText += "- Tiempo de vida: "+TIME_LIFE+"ms\n";  
+    fragmentText += "- Tiempo de vida: "+TIME_LIFE+"ms\n";
     fragmentText += "- Protocolo: "+PROTOCOL.nombre+"\n";
     fragmentText += "- Suma de comprobación: "+fragment.sum+"\n";
     fragmentText += "- IPv4 Origen: "+DIR_O+"\n";
     fragmentText += "- IPv4 Destino: "+DIR_D+"\n";
-    
+
     textArea.innerHTML=fragmentText;
 }
