@@ -29,11 +29,11 @@ let FRAG_LIST = [];
  */
 
 /**
- * 
- * @param {*} len 
- * @param {*} df 
- * @param {*} mf 
- * @param {*} despl 
+ *
+ * @param {*} len
+ * @param {*} df
+ * @param {*} mf
+ * @param {*} despl
  */
 function fragmento(len, df, mf, despl) {
     this.len = len;
@@ -47,10 +47,11 @@ function fragmento(len, df, mf, despl) {
     this.hexa = generateHexa(this);
 }
 
+
 /**
- * 
- * @param {*} nombre 
- * @param {*} numDecimal 
+ *
+ * @param {*} nombre
+ * @param {*} numDecimal
  */
 function protocolObject(nombre, numDecimal) {
     this.nombre = nombre;
@@ -58,11 +59,11 @@ function protocolObject(nombre, numDecimal) {
 }
 
 /**
- * 
- * @param {*} valor 
- * @param {*} unidad 
- * @param {*} tamano 
- * @returns 
+ *
+ * @param {*} valor
+ * @param {*} unidad
+ * @param {*} tamano
+ * @returns
  */
 function transform(valor, unidad = 2, tamano = 0) {
     let aux = parseInt(valor).toString(unidad);
@@ -73,9 +74,9 @@ function transform(valor, unidad = 2, tamano = 0) {
 }
 
 /**
- * 
- * @param {*} fragmento 
- * @returns 
+ *
+ * @param {*} fragmento
+ * @returns
  */
 function generateBinString(fragmento) {
     let cadena = transform(VERSION, 2, 4);
@@ -96,9 +97,9 @@ function generateBinString(fragmento) {
 }
 
 /**
- * 
- * @param {*} fragmento 
- * @returns 
+ *
+ * @param {*} fragmento
+ * @returns
  */
 function generateHexa(fragmento) {
     let arrayBinario = dividirStringEnArray(generateBinString(fragmento), 8);
@@ -108,9 +109,9 @@ function generateHexa(fragmento) {
 }
 
 /**
- * 
- * @param {*} fragmento 
- * @returns 
+ *
+ * @param {*} fragmento
+ * @returns
  */
 function generateBin(fragmento) {
     return dividirStringEnArray(generateBinString(fragmento), 8);
@@ -126,9 +127,9 @@ function dividirStringEnArray(cadena, numDeCaracteres) {
 }
 
 /**
- * 
- * @param {*} fragmento 
- * @returns 
+ *
+ * @param {*} fragmento
+ * @returns
  */
 function calcularSumaComprobacion(fragmento) {
     let arrayHexa = generateHexa(fragmento);
@@ -145,10 +146,10 @@ function calcularSumaComprobacion(fragmento) {
 }
 
 /**
- * 
- * @param {*} cadena1 
- * @param {*} cadena2 
- * @returns 
+ *
+ * @param {*} cadena1
+ * @param {*} cadena2
+ * @returns
  */
 function sumarHexa(cadena1, cadena2) {
     let num1 = parseInt(cadena1, 16);
@@ -157,10 +158,10 @@ function sumarHexa(cadena1, cadena2) {
 }
 
 /**
- * 
- * @param {*} cadena1 
- * @param {*} cadena2 
- * @returns 
+ *
+ * @param {*} cadena1
+ * @param {*} cadena2
+ * @returns
  */
 function restarHexa(cadena1, cadena2) {
     let num1 = parseInt(cadena1, 16);
@@ -212,7 +213,7 @@ const botonGenerar = document.querySelector("#generar");
 botonGenerar.addEventListener("click", (event) => generarProblema());
 
 /**
- * 
+ *
  */
 function generarProblema() {
     document.querySelector("#MTU").value = Math.round((Math.random() * 9900) + 100);
@@ -224,31 +225,35 @@ function generarProblema() {
 }
 
 /**
- * 
+ *
  */
 function calcular() {
 
     var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     MTU = parseInt(document.querySelector("#MTU").value);
     //validacion del tamaño del MTU/ 65535 es 2^16 -1(64 kilobytes)
-    if(MTU>100&&MTU<65535){
 
-    }
-    else{
-      alert("Usted ha ingresado un MTU invalido");
+  let alertV = document.getElementById("alertVerification");
+    if(!(MTU>100&&MTU<65535)){
+      //alert("Usted ha ingresado un MTU invalido");
+      alertV.innerHTML="Usted ha ingresado un MTU inválido";
+      $("#alertVerification").fadeTo(2000, 500).slideUp(500, function(){
+        $("#alertVerification").slideUp(500);
+      });
       return false;
-       }
+    }
 
     LEN_TOTAL = parseInt(document.querySelector("#LEN_TOTAL").value);
     //valida la Longitud
-    if(LEN_TOTAL>50&&LEN_TOTAL<65535){
+    if(!(LEN_TOTAL>50&&LEN_TOTAL<65535)){
 
+        //alert("Usted ha ingresado una longitud invalida");
+        alertV.innerHTML="Usted ha ingresado una longitud inválida";
+        $("#alertVerification").fadeTo(2000, 500).slideUp(500, function(){
+  $("#alertVerification").slideUp(500);
+});
+        return false;
     }
-    else{
-      alert("Usted ha ingresado una longitud invalida");
-      return false;
-       }
-
     //Obtener el protocolo seleccionado
     var RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
     for (i = 0; i < RADIO_PROTOCOLS.length; i++) {
@@ -261,19 +266,21 @@ function calcular() {
     DIR_D = document.querySelector("#DIR_D").value;
 
     //valida direcciones ip origen y destino
-    if(DIR_O.match(ipformat)){
-
-    }
-    else{
-      alert("Usted ha ingresado una direccion ip de origen invalida");
+    if(!DIR_O.match(ipformat)){
+      //alert("Usted ha ingresado una direccion ip de origen invalida");
+      alertV.innerHTML="Usted ha ingresado una direccion ip de origen inválida";
+      $("#alertVerification").fadeTo(2000, 500).slideUp(500, function(){
+  $("#alertVerification").slideUp(500);
+});
       return false;
     }
-    if(DIR_D.match(ipformat)){
-
-    }
-    else{
-      alert("Usted ha ingresado una direccion ip de destino invalida");
-      return false;
+    if(!DIR_D.match(ipformat)){
+        //alert("Usted ha ingresado una direccion ip de destino invalida");
+        alertV.innerHTML="Usted ha ingresado una direccion ip de destino inválida";
+        $("#alertVerification").fadeTo(2000, 500).slideUp(500, function(){
+  $("#alertVerification").slideUp(500);
+});
+        return false;
     }
     //
 
@@ -284,7 +291,7 @@ function calcular() {
 }
 
 /**
- * 
+ *
  */
 function rellenarTabla() {
     document.getElementById("Select_Table_Body").innerHTML = "";
@@ -319,9 +326,9 @@ function rellenarTabla() {
 }
 
 /**
- * 
- * @param {*} fragment 
- * @param {*} number 
+ *
+ * @param {*} fragment
+ * @param {*} number
  */
 function rellenarTablaBinario(fragment, number) {
     let binary = fragment.bin;
@@ -346,9 +353,9 @@ function rellenarTablaBinario(fragment, number) {
 }
 
 /**
- * 
- * @param {*} fragment 
- * @param {*} number 
+ *
+ * @param {*} fragment
+ * @param {*} number
  */
 function rellenarTablaHexadecimal(fragment, number) {
     let hexa = fragment.hexa;
@@ -375,9 +382,9 @@ function rellenarTablaHexadecimal(fragment, number) {
 }
 
 /**
- * 
- * @param {*} fragment 
- * @param {*} number 
+ *
+ * @param {*} fragment
+ * @param {*} number
  */
 function rellenarTablaWireShark(fragment, number){
 let textArea = document.getElementById("Datagram_TextArea");
