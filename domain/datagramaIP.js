@@ -215,7 +215,7 @@ botonGenerar.addEventListener("click", (event) => generarProblema());
  * 
  */
 function generarProblema() {
-    document.querySelector("#MTU").value = Math.round((Math.random() * 65435) + 100);
+    document.querySelector("#MTU").value = Math.round((Math.random() * 9900) + 100);
     document.querySelector("#LEN_TOTAL").value = Math.round((Math.random() * 65485) + 50);
     document.querySelector("#DIR_O").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
     document.querySelector("#DIR_D").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
