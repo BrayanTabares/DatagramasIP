@@ -28,6 +28,13 @@ let FRAG_LIST = [];
  * FUNCIONES
  */
 
+/**
+ * 
+ * @param {*} len 
+ * @param {*} df 
+ * @param {*} mf 
+ * @param {*} despl 
+ */
 function fragmento(len, df, mf, despl) {
     this.len = len;
     this.df = df;
@@ -40,11 +47,23 @@ function fragmento(len, df, mf, despl) {
     this.hexa = generateHexa(this);
 }
 
+/**
+ * 
+ * @param {*} nombre 
+ * @param {*} numDecimal 
+ */
 function protocolObject(nombre, numDecimal) {
     this.nombre = nombre;
     this.numDecimal = numDecimal;
 }
 
+/**
+ * 
+ * @param {*} valor 
+ * @param {*} unidad 
+ * @param {*} tamano 
+ * @returns 
+ */
 function transform(valor, unidad = 2, tamano = 0) {
     let aux = parseInt(valor).toString(unidad);
     if (tamano != 0) {
@@ -53,6 +72,11 @@ function transform(valor, unidad = 2, tamano = 0) {
     return aux;
 }
 
+/**
+ * 
+ * @param {*} fragmento 
+ * @returns 
+ */
 function generateBinString(fragmento) {
     let cadena = transform(VERSION, 2, 4);
     cadena += transform(LONG_ENCABEZADO, 2, 4);
@@ -71,6 +95,11 @@ function generateBinString(fragmento) {
     return cadena;
 }
 
+/**
+ * 
+ * @param {*} fragmento 
+ * @returns 
+ */
 function generateHexa(fragmento) {
     let arrayBinario = dividirStringEnArray(generateBinString(fragmento), 8);
     let arrayHexa = new Array(arrayBinario.length);
@@ -78,6 +107,11 @@ function generateHexa(fragmento) {
     return arrayHexa;
 }
 
+/**
+ * 
+ * @param {*} fragmento 
+ * @returns 
+ */
 function generateBin(fragmento) {
     return dividirStringEnArray(generateBinString(fragmento), 8);
 }
@@ -91,6 +125,11 @@ function dividirStringEnArray(cadena, numDeCaracteres) {
     return newArray;
 }
 
+/**
+ * 
+ * @param {*} fragmento 
+ * @returns 
+ */
 function calcularSumaComprobacion(fragmento) {
     let arrayHexa = generateHexa(fragmento);
     let suma = "0";
@@ -105,12 +144,24 @@ function calcularSumaComprobacion(fragmento) {
     return parseInt(restarHexa("FFFF", suma), 16);
 }
 
+/**
+ * 
+ * @param {*} cadena1 
+ * @param {*} cadena2 
+ * @returns 
+ */
 function sumarHexa(cadena1, cadena2) {
     let num1 = parseInt(cadena1, 16);
     let num2 = parseInt(cadena2, 16);
     return (num1 + num2).toString(16);
 }
 
+/**
+ * 
+ * @param {*} cadena1 
+ * @param {*} cadena2 
+ * @returns 
+ */
 function restarHexa(cadena1, cadena2) {
     let num1 = parseInt(cadena1, 16);
     let num2 = parseInt(cadena2, 16);
@@ -160,8 +211,9 @@ botonCalcular.addEventListener("click", (event) => calcular());
 const botonGenerar = document.querySelector("#generar");
 botonGenerar.addEventListener("click", (event) => generarProblema());
 
-
-
+/**
+ * 
+ */
 function generarProblema() {
     document.querySelector("#MTU").value = Math.round((Math.random() * 65435) + 100);
     document.querySelector("#LEN_TOTAL").value = Math.round((Math.random() * 65485) + 50);
@@ -171,6 +223,9 @@ function generarProblema() {
     RADIO_PROTOCOLS[Math.round(Math.random()*2)].click();
 }
 
+/**
+ * 
+ */
 function calcular() {
 
     var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
@@ -227,6 +282,10 @@ function calcular() {
     console.log(FRAG_LIST);
 
 }
+
+/**
+ * 
+ */
 function rellenarTabla() {
     document.getElementById("Select_Table_Body").innerHTML = "";
     let tableBody = document.getElementById("Select_Table_Body");
@@ -258,6 +317,12 @@ function rellenarTabla() {
         cell7.innerHTML = FRAG_LIST[i].despl;
     }
 }
+
+/**
+ * 
+ * @param {*} fragment 
+ * @param {*} number 
+ */
 function rellenarTablaBinario(fragment, number) {
     let binary = fragment.bin;
     document.getElementById("Binary_Table_Body").innerHTML = "";
@@ -279,6 +344,12 @@ function rellenarTablaBinario(fragment, number) {
         cell4.innerHTML = binary[i + 3];
     }
 }
+
+/**
+ * 
+ * @param {*} fragment 
+ * @param {*} number 
+ */
 function rellenarTablaHexadecimal(fragment, number) {
     let hexa = fragment.hexa;
     document.getElementById("Hexa_Table_Body").innerHTML = "";
@@ -302,6 +373,12 @@ function rellenarTablaHexadecimal(fragment, number) {
         cell5.innerHTML = hexa[i + 4];
     }
 }
+
+/**
+ * 
+ * @param {*} fragment 
+ * @param {*} number 
+ */
 function rellenarTablaWireShark(fragment, number){
 let textArea = document.getElementById("Datagram_TextArea");
 document.getElementById("Datagram_TextArea_Title").innerHTML="Fragmento Wireshark #"+number;
