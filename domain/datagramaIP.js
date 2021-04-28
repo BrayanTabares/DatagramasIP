@@ -172,12 +172,12 @@ function generarProblema() {
 }
 
 function calcular() {
-    
+
     var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     MTU = parseInt(document.querySelector("#MTU").value);
     //validacion del tamaño del MTU/ 65535 es 2^16 -1(64 kilobytes)
     if(MTU>100&&MTU<65535){
-      alert("nice cock bro");
+
     }
     else{
       alert("Usted ha ingresado un MTU invalido");
@@ -186,8 +186,8 @@ function calcular() {
 
     LEN_TOTAL = parseInt(document.querySelector("#LEN_TOTAL").value);
     //valida la Longitud
-    if(LEN_TOTAL>50&&MTU<65535){
-      alert("nice boypussy");
+    if(LEN_TOTAL>50&&LEN_TOTAL<65535){
+
     }
     else{
       alert("Usted ha ingresado un MTU invalido");
@@ -207,14 +207,14 @@ function calcular() {
 
     //valida direcciones ip origen y destino
     if(DIR_O.match(ipformat)){
-      alert("nice clit sis")
+
     }
     else{
       alert("Usted ha ingresado una direccion ip de origen invalida");
       return false;
     }
     if(DIR_D.match(ipformat)){
-      alert("nice asshole homie")
+
     }
     else{
       alert("Usted ha ingresado una direccion ip de destino invalida");
