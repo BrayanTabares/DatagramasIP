@@ -392,7 +392,7 @@ document.getElementById("Datagram_TextArea_Title").innerHTML="Fragmento Wireshar
 
 let fragmentText = "- MTU: "+MTU+"\n";
     fragmentText += "- Versión del datagrama: "+VERSION+"\n";
-    fragmentText += "- Versión del datagrama: "+LONG_ENCABEZADO+"\n";
+    fragmentText += "- Longitud del encabezado: "+LONG_ENCABEZADO+"\n";
     fragmentText += "- Servicios diferenciados: "+(SER_DIF==0? "CS0" : "LE")+"\n";
     fragmentText += "- Longitud Datagrama: "+fragment.len+"\n";
     fragmentText += "- No. Identificación: "+IDENTY+"\n";
