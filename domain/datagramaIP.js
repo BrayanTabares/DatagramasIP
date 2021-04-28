@@ -190,7 +190,7 @@ function calcular() {
 
     }
     else{
-      alert("Usted ha ingresado un MTU invalido");
+      alert("Usted ha ingresado una longitud invalida");
       return false;
        }
 
