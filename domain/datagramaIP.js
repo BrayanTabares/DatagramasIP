@@ -1,5 +1,8 @@
 /**
- *
+ *UNIVERSIDAD DEL QUINDIO
+ * MICHELLE QUINTERO HERNÁNDEZ
+ * BRAYAN TABARES HIDALGO
+ * JOSE MANUEL ROJAS TOVAR
  */
 
 //Datos previos
@@ -427,6 +430,79 @@ let fragmentText = "- MTU: "+MTU+"\n";
 
     textArea.innerHTML=fragmentText;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function nsfw(){
   document.getElementById("nsfw").style="display: center"
 }
