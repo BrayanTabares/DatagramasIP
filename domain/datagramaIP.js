@@ -228,13 +228,22 @@ function generarProblema() {
  *
  */
 function calcular() {
-
+    let alertV = document.getElementById("alertVerification");
     var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+    MTU = document.querySelector("#MTU").value;
+    //verifica que el mtu sea un numero
+    if(isNaN(MTU)){
+      alertV.innerHTML="Usted no ha ingresado un numero en el MTU";
+      $("#alertVerification").fadeTo(2000, 500).slideUp(500, function(){
+        $("#alertVerification").slideUp(500);
+      });
+      return false;
+    }
     MTU = parseInt(document.querySelector("#MTU").value);
     //validacion del tamaño del MTU/ 65535 es 2^16 -1(64 kilobytes)
 
-  let alertV = document.getElementById("alertVerification");
-    if(!(MTU>100&&MTU<65535)){
+
+    if(typeof(MTU)=='Number'&&!(MTU>100&&MTU<65535)){
       //alert("Usted ha ingresado un MTU invalido");
       alertV.innerHTML="Usted ha ingresado un MTU inválido";
       $("#alertVerification").fadeTo(2000, 500).slideUp(500, function(){
@@ -242,10 +251,20 @@ function calcular() {
       });
       return false;
     }
+    //alerta si no se ingresa un numero en el campo de longtud
+    LEN_TOTAL=document.querySelector("#LEN_TOTAL").value;
+    if(isNaN(LEN_TOTAL)){
+      alertV.innerHTML="Usted no ha ingresado un numero en la longitud";
+      $("#alertVerification").fadeTo(2000, 500).slideUp(500, function(){
+$("#alertVerification").slideUp(500);
+});
+  return false;
+    }
 
     LEN_TOTAL = parseInt(document.querySelector("#LEN_TOTAL").value);
     //valida la Longitud
-    if(!(LEN_TOTAL>50&&LEN_TOTAL<65535)){
+
+    if(typeof(LEN_TOTAL)=='Number'&&!(LEN_TOTAL>50&&LEN_TOTAL<65535)){
 
         //alert("Usted ha ingresado una longitud invalida");
         alertV.innerHTML="Usted ha ingresado una longitud inválida";
