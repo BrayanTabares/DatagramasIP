@@ -220,7 +220,7 @@ function generarProblema() {
     document.querySelector("#LEN_TOTAL").value = Math.round((Math.random() * 65485) + 50);
     document.querySelector("#DIR_O").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
     document.querySelector("#DIR_D").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
-    document.querySelector("#identification").value = transform(Math.round(Math.random() * 65535),16,4);
+    document.querySelector("#identification").value = Math.round(Math.random() * 65535);
     document.querySelector("#lifetime").value = Math.round(Math.random() * 255);
     let RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
     RADIO_PROTOCOLS[Math.round(Math.random()*2)].click();
@@ -233,7 +233,7 @@ function calcular() {
     let alertV = document.getElementById("alertVerification");
     var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
-    IDENTY = parseInt(document.querySelector("#identification").value,16)
+    IDENTY = document.querySelector("#identification").value;
     TIME_LIFE = document.querySelector("#lifetime").value;
     MTU = document.querySelector("#MTU").value;
     //verifica que el mtu sea un numero
