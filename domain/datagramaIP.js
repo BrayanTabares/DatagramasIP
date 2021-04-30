@@ -385,21 +385,19 @@ function rellenarTablaHexadecimal(fragment, number) {
     document.getElementById("Hexa_Table_Title").innerHTML = "Fragmento Hexadecimal #" + number;
     let tableBody = document.getElementById("Hexa_Table_Body");
 
-    for (let i = 0; i < hexa.length; i += 5) {
+    for (let i = 0; i < hexa.length; i += 4) {
 
-        let row = tableBody.insertRow(i != 0 ? i / 5 : i);
+        let row = tableBody.insertRow(i != 0 ? i / 4 : i);
 
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
         let cell3 = row.insertCell(2);
         let cell4 = row.insertCell(3);
-        let cell5 = row.insertCell(4);
 
         cell1.innerHTML = hexa[i];
         cell2.innerHTML = hexa[i + 1];
         cell3.innerHTML = hexa[i + 2];
         cell4.innerHTML = hexa[i + 3];
-        cell5.innerHTML = hexa[i + 4];
     }
 }
 
@@ -410,21 +408,21 @@ function rellenarTablaHexadecimal(fragment, number) {
  */
 function rellenarTablaWireShark(fragment, number){
 let textArea = document.getElementById("Datagram_TextArea");
-document.getElementById("Datagram_TextArea_Title").innerHTML="Fragmento Wireshark #"+number;
+document.getElementById("Datagram_TextArea_Title").innerHTML="Fragmento #"+number;
 
-let fragmentText = "- MTU: "+MTU+"\n";
+let fragmentText = "- MTU: "+MTU+" bytes\n";
     fragmentText += "- Versión del datagrama: "+VERSION+"\n";
     fragmentText += "- Longitud del encabezado: "+LONG_ENCABEZADO+"\n";
     fragmentText += "- Servicios diferenciados: "+(SER_DIF==0? "CS0" : "LE")+"\n";
-    fragmentText += "- Longitud Datagrama: "+fragment.len+"\n";
-    fragmentText += "- No. Identificación: "+IDENTY+"\n";
+    fragmentText += "- Longitud Datagrama: "+fragment.len+" bytes\n";
+    fragmentText += "- No. Identificación: "+"0x"+parseInt(IDENTY).toString(16)+" ("+IDENTY+")\n";
     fragmentText += "- Flags: "+"\n";
     fragmentText += "\tNo fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
     fragmentText += "\tMás fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
-    fragmentText += "- Desplazamiento: "+fragment.despl+"\n";
-    fragmentText += "- Tiempo de vida: "+TIME_LIFE+"ms\n";
-    fragmentText += "- Protocolo: "+PROTOCOL.nombre+"\n";
-    fragmentText += "- Suma de comprobación: "+fragment.sum+"\n";
+    fragmentText += "- Desplazamiento: 0x"+fragment.despl+" ("+(fragment.despl*8)+" bytes)\n";
+    fragmentText += "- Tiempo de vida: "+TIME_LIFE+"\n";
+    fragmentText += "- Protocolo: "+PROTOCOL.nombre+" ("+PROTOCOL.numDecimal+")\n";
+    fragmentText += "- Suma de comprobación: 0x"+parseInt(fragment.sum).toString(16)+"\n";
     fragmentText += "- IPv4 Origen: "+DIR_O+"\n";
     fragmentText += "- IPv4 Destino: "+DIR_D+"\n";
 
