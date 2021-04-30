@@ -11,16 +11,14 @@ const LONG_ENCABEZADO = 5;
 const SER_DIF = 0;
 const PROTOCOL_LIST = [new protocolObject("ICMP", 1), new protocolObject("TCP", 6), new protocolObject("UDP", 17)];
 
-//Autogenerados
-const IDENTY = Math.round(Math.random() * 65535);
-const TIME_LIFE = Math.round(Math.random() * 255);
-
 //Campos entrantes - Inputs del html
 let MTU = 0;
 let LEN_TOTAL = 0;
 let PROTOCOL = PROTOCOL_LIST[1];
 let DIR_O = "";
 let DIR_D = "";
+let IDENTY = 0;
+let TIME_LIFE = 0;
 
 let VERIFY_INPUTS = true;
 
@@ -32,7 +30,7 @@ let FRAG_LIST = [];
  */
 
 /**
- * 
+ *
  * @param {*} len
  * @param {*} df
  * @param {*} mf
@@ -44,6 +42,7 @@ function fragmento(len, df, mf, despl) {
     this.mf = mf;
     this.despl = despl;
     this.sum = 0;
+    this.lifetim=lifetime;
     this.sum = calcularSumaComprobacion(this);
     this.binString = generateBinString(this);
     this.bin = generateBin(this);
@@ -221,6 +220,8 @@ function generarProblema() {
     document.querySelector("#LEN_TOTAL").value = Math.round((Math.random() * 65485) + 50);
     document.querySelector("#DIR_O").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
     document.querySelector("#DIR_D").value = Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255) + "." + Math.round(Math.random() * 255);
+    document.querySelector("#identification").value = transform(Math.round(Math.random() * 65535),16,4);
+    document.querySelector("#lifetime").value = Math.round(Math.random() * 255);
     let RADIO_PROTOCOLS = document.getElementsByName('PROTOCOL');
     RADIO_PROTOCOLS[Math.round(Math.random()*2)].click();
 }
@@ -231,6 +232,9 @@ function generarProblema() {
 function calcular() {
     let alertV = document.getElementById("alertVerification");
     var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+
+    IDENTY = parseInt(document.querySelector("#identification").value,16)
+    TIME_LIFE = document.querySelector("#lifetime").value;
     MTU = document.querySelector("#MTU").value;
     //verifica que el mtu sea un numero
     if(isNaN(MTU)){
