@@ -418,7 +418,7 @@ let fragmentText = "- MTU: "+MTU+" bytes\n";
     fragmentText += "\t0... .... Bit reservado: "+"0"+"\n";
     fragmentText += "\t."+fragment.df+".. .... No fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
     fragmentText += "\t.."+fragment.mf+". .... Más fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
-    fragmentText += "- Desplazamiento: 0x"+transform(fragment.despl,16,4)+" = "+fragment.despl+" ("+(fragment.despl*8)+" bytes)\n";
+    fragmentText += "- Desplazamiento: 0x"+fragment.hexa[6]+fragment.hexa[7]+" = "+fragment.despl+" ("+(fragment.despl*8)+" bytes)\n";
     fragmentText += "- Tiempo de vida: "+TIME_LIFE+"\n";
     fragmentText += "- Protocolo: "+PROTOCOL.nombre+" ("+PROTOCOL.numDecimal+")\n";
     fragmentText += "- Suma de comprobación: 0x"+fragment.hexa[10]+fragment.hexa[11]+" = "+parseInt(fragment.sum)+"\n";
