@@ -32,7 +32,7 @@ let FRAG_LIST = [];
  */
 
 /**
- *
+ * 
  * @param {*} len
  * @param {*} df
  * @param {*} mf
@@ -172,18 +172,16 @@ function restarHexa(cadena1, cadena2) {
     return (num1 - num2).toString(16);
 }
 
-function fragmentar(mtu, lenTotal, protocol, dirO, dirD) {
+function fragmentar(mtu, lenTotal) {
     let tamanoEncabezado = 20;
     let numFragments = 1;
     let interLen=lenTotal;
     let lastLen = lenTotal;
-    let boolFragmentar = false;
     //Es necesario fragmentar?
     if (mtu < lenTotal) {
         interLen=mtu;
         numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (mtu - tamanoEncabezado));
         lastLen = lenTotal - ((mtu - tamanoEncabezado) * (numFragments - 1));
-        boolFragmentar = true;
         if(((mtu-tamanoEncabezado)%8)!=0){
             interLen=(Math.floor((mtu-tamanoEncabezado)/8)*8)+tamanoEncabezado;
             numFragments = Math.ceil((lenTotal - tamanoEncabezado) / (interLen - tamanoEncabezado));
@@ -306,7 +304,7 @@ $("#alertVerification").slideUp(500);
     }
     //
 
-    fragmentar(MTU, LEN_TOTAL, PROTOCOL_LIST[0], DIR_O, DIR_D);
+    fragmentar(MTU, LEN_TOTAL);
     rellenarTabla();
     console.log(FRAG_LIST);
 
@@ -416,9 +414,10 @@ let fragmentText = "- MTU: "+MTU+" bytes\n";
     fragmentText += "- Servicios diferenciados: "+(SER_DIF==0? "CS0" : "LE")+"\n";
     fragmentText += "- Longitud Datagrama: "+fragment.len+" bytes\n";
     fragmentText += "- No. Identificación: "+"0x"+parseInt(IDENTY).toString(16)+" ("+IDENTY+")\n";
-    fragmentText += "- Flags: "+"\n";
-    fragmentText += "\tNo fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
-    fragmentText += "\tMás fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
+    fragmentText += "- Flags: "+"0x"+fragment.hexa[6]+"\n";
+    fragmentText += "\t0... .... Bit reservado: "+"0"+"\n";
+    fragmentText += "\t."+fragment.df+".. .... No fragmentar: "+(fragment.df>0? "Verdadero" : "Falso")+"\n";
+    fragmentText += "\t.."+fragment.mf+". .... Más fragmentos: "+(fragment.mf>0? "Verdadero" : "Falso")+"\n";
     fragmentText += "- Desplazamiento: 0x"+fragment.despl+" ("+(fragment.despl*8)+" bytes)\n";
     fragmentText += "- Tiempo de vida: "+TIME_LIFE+"\n";
     fragmentText += "- Protocolo: "+PROTOCOL.nombre+" ("+PROTOCOL.numDecimal+")\n";
